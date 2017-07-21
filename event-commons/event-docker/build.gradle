@@ -1,0 +1,40 @@
+
+version='0.1.0'
+
+task dockerClean {
+	doLast {
+		project.exec { ExecSpec e ->
+			e.commandLine composeCommand('rm','-f')
+		}
+	}
+}
+
+task dockerBuild {
+	doLast {
+		project.exec { ExecSpec e ->
+			e.commandLine composeCommand('build')
+		}
+	}
+}
+
+task dockerStart {
+	doLast {
+		project.exec { ExecSpec e ->
+			e.commandLine composeCommand('up','-d')
+		}
+	}
+}
+
+task dockerStop {
+	doLast {
+		project.exec { ExecSpec e ->
+			e.commandLine composeCommand('down')
+		}
+	}
+}
+
+Iterable<String> composeCommand(String... args) {
+	def res = ['docker-compose']
+	res.addAll(args)
+	res
+}

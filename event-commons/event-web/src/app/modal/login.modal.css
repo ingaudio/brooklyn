@@ -1,0 +1,26 @@
+#navBar.navbar {
+	background-color: seagreen;
+}
+
+#navBar.navbar img {
+	height: 30px;
+	background-color: orange;
+	border-radius: 50px;
+}
+
+#navBar .btn-link {
+	color: white;
+	cursor: pointer; 
+	cursor: hand;
+}
+
+.modalLoginText {
+	font-size: large;
+	padding-bottom: 20px;
+}
+
+.modalLoginBtnGoogle {
+	display: inline-table;
+	vertical-align: top;
+}
+

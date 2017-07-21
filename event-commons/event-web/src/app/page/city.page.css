@@ -1,0 +1,11 @@
+.page {
+	background-color: #d3d3d3;
+}
+
+.page .box {
+	margin: 50px;
+	padding: 30px;
+	background-color: darkseagreen;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px #888888;
+}

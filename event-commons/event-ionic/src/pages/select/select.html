@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+	<ion-searchbar (ionInput)="search($event)" *ngIf="searchable"></ion-searchbar>
+	<ion-buttons right *ngIf="editable">
+		<button ion-button icon-only (click)="addValue()" color="primary">
+			<ion-icon name="add"></ion-icon>
+		</button>
+	</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item *ngFor="let item of currentItems" >
+  			<ion-checkbox [checked]="item.selected" (click)="clickOnValue(item.name)"></ion-checkbox>
+  			<ion-label text-capitalize>{{item.name}}</ion-label>
+  			<ion-badge item-end *ngIf="item.count > 0">{{item.count}}</ion-badge>
+		</ion-item>
+	</ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  	<ion-buttons right>
+		<button ion-button padding-right (click)="dismiss()" color="primary">
+			<span>OK</span>
+		</button>
+	</ion-buttons> 
+  </ion-toolbar>
+</ion-footer> 

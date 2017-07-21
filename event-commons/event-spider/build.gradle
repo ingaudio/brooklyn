@@ -1,0 +1,47 @@
+
+version="0.1.0"
+
+ext {
+	virtualEnv = "venv"
+}
+apply plugin: 'eclipse'
+
+task createVirtualEnv() {
+	doLast {
+		if(!file("$buildDir/$virtualEnv/bin/python").exists()) {
+			file("$buildDir").mkdirs()
+			project.exec { ExecSpec e ->
+				e.workingDir=buildDir
+				e.commandLine='virtualenv'
+				e.args = [virtualEnv]
+			}
+		}
+	}
+}
+
+task setupVirtualEnv() {
+	dependsOn createVirtualEnv
+	doLast {
+		project.exec { ExecSpec e ->
+			e.workingDir="build/venv/bin"
+//			e.environment PATH:file('build/venv/bin/').absolutePath
+			e.commandLine='./pip'
+			e.args = ['install', 'scrapy', 'pysolr', 'googlemaps']
+		}
+	}
+}
+
+task spiderBcn() {
+	dependsOn setupVirtualEnv
+	doLast {
+		project.exec { ExecSpec e ->
+			e.workingDir="src/python"
+			e.environment PATH:file('build/venv/bin/').absolutePath 
+			//PYTHONHOME:file('build/venv/bin/').absolutePath
+			e.commandLine='python'
+			e.args = ['crawlerBarcelona.py']
+		}
+	}
+}
+
+

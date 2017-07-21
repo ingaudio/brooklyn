@@ -1,0 +1,29 @@
+
+.facet-box .pull-right {
+	cursor: pointer;
+}
+
+.facet-box .facet-box-header:HOVER {
+/* 	text-decoration: underline; */
+}
+
+.facet-box .facet-box-title {
+	font-size: small;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+.facet-box .badge {
+	color: seagreen;
+}
+
+.facet-box hr {
+	padding: 0px;
+	margin: 5px;
+}
+
+.facet-box .facet-selected {
+	font-size: xx-small;
+	text-align: right;
+	text-transform: capitalize;
+}

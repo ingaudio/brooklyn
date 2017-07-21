@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="!event.id">{{ 'ITEM_CREATE_TITLE' | translate }}</ion-title>
+    <ion-title *ngIf="event.id">Edit Event</ion-title>
+    <ion-buttons end>
+   		<button ion-button icon-only *ngIf="isReadyToSave" (click)="saveEvent()">
+      		<ion-icon name="checkmark"></ion-icon>
+      		<span>Save</span>
+   		</button>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+  	<ion-grid>
+  		<ion-row>
+   			<ion-col>
+				<img src="{{event.image}}" style="max-height: 300px;"/>   			
+   			</ion-col>
+   		</ion-row>
+   		<ion-row>
+   			<ion-col>
+   				<ion-item>
+	   				<ion-label stacked>Title</ion-label>
+	     			<ion-input (ngModelChange)="onChange()" type="text" placeholder="Insert a title for the event" [(ngModel)]="event.name"></ion-input>
+     			</ion-item>	
+   			</ion-col>
+   		</ion-row>
+	  	<ion-row>
+	    	<ion-col>
+	    		<ion-item>
+	    			<ion-label stacked>Date Start</ion-label>
+     			  	<ion-datetime (ngModelChange)="onChange()" displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="event.dateStart"></ion-datetime>
+	      		</ion-item>
+	    	</ion-col>
+	    	<ion-col>
+	    		<ion-item>
+	    			<ion-label stacked>Date End</ion-label>
+     			  	<ion-datetime (ngModelChange)="onChange()" displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="event.dateEnd"></ion-datetime>
+	      		</ion-item>
+	    	</ion-col>
+	  	</ion-row>
+	  	<ion-row>
+   			<ion-col>
+   				<ion-item (click)="openModalCategory()">
+	   				<ion-label stacked>Category</ion-label>
+	     			<ion-label>
+   						<span *ngIf="event.category">{{ event.category }}</span>
+   						<span *ngIf="!event.category">
+				    		Select category for the event
+				    	</span>
+					</ion-label>
+     			</ion-item>	
+   			</ion-col>
+   			<ion-col>
+   				<ion-item (click)="openModalTags()"> 
+   					<ion-label stacked>Tags</ion-label>
+   					<ion-label>
+   						<span *ngFor="let item of event.tags">{{item}},&nbsp;</span>
+   						<span *ngIf="!event.tags || event.tags.length == 0">
+				    		Select tags for the event
+				    	</span>
+					</ion-label>
+     			</ion-item>	
+   			</ion-col>
+   		</ion-row>
+   		<ion-row>
+   			<ion-col>
+   				<ion-item>
+	   				<ion-label stacked>Price</ion-label>
+	     			<ion-input (ngModelChange)="onChange()" type="number" placeholder="Insert a price" [(ngModel)]="event.price" ></ion-input>
+     			</ion-item>	
+   			</ion-col>
+   		</ion-row>
+	</ion-grid>
+</ion-content>

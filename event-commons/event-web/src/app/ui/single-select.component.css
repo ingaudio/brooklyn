@@ -1,0 +1,8 @@
+:host /deep/ .dropdown-menu {
+	display: block !important;
+}
+
+:host /deep/ .ui-select-toggle {
+	font-size: small !important;
+}
+

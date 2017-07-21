@@ -1,0 +1,46 @@
+<nav id="navBar" class="navbar fixed-top navbar-light navbar-toggleable-md">
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="navbar-brand navbar-inline" >
+		<div class="navbar-logo navbar-inline"></div>
+		<div class="navbar-title navbar-inline">
+			<a routerLink="/city" routerLinkActive="active">
+				<span>Enjoy</span>
+				<span class="navbar-city">{{city}}</span>
+			</a>
+		</div>
+	</div>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav ml-auto">
+			<li *ngIf="!user" class="nav-item">
+				<div class="btn btn-link navbar-btn navbar-item-padding" (click)="openModal()">
+					<i class="fa fa-sign-in"></i>
+					<span>Login</span>
+				</div>
+			</li>
+			<li *ngIf="user" class="nav-item">
+				<div class="dropdown">
+					<button class="btn btn-link dropdown-toggle navbar-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">
+						<div class="navbar-inline">
+							<div class="navbar-avatar navbar-inline" [ngStyle]="{'background-image': 'url(' + user.pictureUrl + ')'}" ></div>
+							<span class="navbar-inline">{{user.name}}</span>
+						</div>
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<div class="dropdown-item">
+							<div class="btn btn-default" (click)="logout()">
+								<i class="fa fa-sign-out"></i>
+								<span>Logout</span>
+							</div>
+						</div>
+				</div>
+			</div>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+

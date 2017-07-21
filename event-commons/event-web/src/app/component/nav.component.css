@@ -1,0 +1,80 @@
+#navBar.navbar {
+	background-color: seagreen;
+	height: 50px;
+}
+
+#navBar.navbar {
+	padding: 0px;
+	margin: 0px;
+	padding-top: 1px;
+}
+
+#navBar .navbar-collapse {
+	background-color: seagreen;
+	height: 99%;
+}
+
+#navBar .navbar-inline {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#navBar .navbar-item-padding {
+	padding-top: 14px;
+}
+
+#navBar .navbar-brand {
+	padding-left: 10px;
+}
+
+#navBar .navbar-logo {
+	background-color: orange;
+	background-image: url("/assets/logo.png");
+	background-repeat: no-repeat;
+	background-size: 30px;
+	background-position: center;
+	height: 35px;
+	width: 35px;
+	border-radius: 50px;
+}
+
+#navBar .navbar-title a {
+	font-size: x-large;
+	color: white;
+}
+
+#navBar .navbar-title a:HOVER {
+	text-decoration: none;	
+}
+
+#navBar .navbar-city {
+	text-transform: capitalize;
+	color: orange;
+	font-size: x-small;
+	position: relative;
+	left: -35px;
+	bottom: -13px;	
+}
+
+#navBar .navbar-avatar {
+	background-repeat: no-repeat;
+	background-size: 30px;
+	background-position: center;
+	height: 30px;
+	width: 30px;
+	border-radius: 50px;
+}
+
+#navBar .navbar-btn {
+	color: white;
+	font-size: small;
+	cursor: pointer;
+}
+
+#navBar .navbar-btn:HOVER {
+	text-decoration: none;
+}
+
+#navBar .navbar-btn span:HOVER {
+	text-decoration: underline;
+}

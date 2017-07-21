@@ -1,0 +1,33 @@
+<event-nav [city]="eventService.getWhereQuery()"></event-nav>
+<div class="container-fluid page">
+	<div class="row fullHeight">
+		<div class="side-nav col-lg-2 fullHeight col-md-2 hidden-sm-down" *ngIf="facets" style="overflow: hidden; overflow-y: scroll;">
+			<div class="side-section">
+<!-- 				<event-facet-box title="What" icon="fa fa-bolt" key="category"></event-facet-box> -->
+				<event-facet-box title="Place" icon="fa fa-map-marker" key="place"></event-facet-box>
+<!-- 				<event-facet-box title="price" icon="fa fa-euro" key="price" ></event-facet-box> -->
+<!-- 				<event-facet-box title="tags" icon="fa fa-tags" key="tags"></event-facet-box> -->
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-10 fullHeight">
+			<event-result [(myPosition)]="myPosition"></event-result>
+		</div>
+		<div class="col-lg-4 hidden-md-down right-section">
+			<div class="box-where">
+				<div class="box-header">
+					<span><i class="fa fa-globe"></i>&nbsp;Where</span>
+					<span class="float-right whereTarget btn btn-link btn-sm" *ngIf="eventService.getWhereQuery()" (click)="resetWhereQuery()">
+						<span>{{ eventService.getWhereQuery() }}</span>
+						<i class="fa fa-close"></i>
+					</span>
+				</div>
+				<div class="mapContainer">
+					<event-map [(myPosition)]="myPosition" [(events)]="geoPoints"></event-map>
+				</div>
+				<div class="mapInfo">
+<!-- 					<event-facet-box title="Top place in {{eventService.getWhereQuery()}}" key="place" colSize="50%" ></event-facet-box> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

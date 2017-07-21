@@ -1,0 +1,63 @@
+
+.tabTitle {
+	font-size: small;
+}
+
+.overlay-map {
+	padding-bottom: 10px;
+}
+
+.overlay-map .address {
+	font-size: small !important;
+	text-transform: capitalize;
+	padding: 10px;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+.overlay-map .address .addressData span:FIRST-CHILD {
+	font-weight: bold;
+}
+
+.overlay-map .address .changeAddress {
+	padding: 0px;
+	margin: 0px;
+	font-size: small;	
+	text-transform: lowercase;
+}
+
+.overlay-map .mapContainer {
+}
+
+.overlay-geocode .form-control-feedback {
+	font-size: x-small;
+}
+
+/* IFRAME ZOOM */
+
+iframe {
+  width: 1024px;
+  height: 768px;
+}
+
+iframe {
+  position: relative;
+  -ms-zoom: 0.25;
+  -moz-transform: scale(0.25);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.25);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.25);
+  -webkit-transform-origin: 0 0;
+}
+
+iframe:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 300px;
+}

@@ -1,0 +1,40 @@
+
+
+.media .bar {
+	width: 100%;
+	border: thin solid gray;
+}
+
+.media .comment {
+	display: inline-block;
+	width: 80%;
+}
+
+.media .comment textarea {
+	resize: none;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	font-size: small;
+	width: 100%;
+}
+
+.media .options {
+	vertical-align: top;
+	width: 19%;
+	display: inline-block;
+}
+
+.media .options span {
+/* 	background-color: darkseagreen; */
+/* 	color: #d3d3d3; */
+	font-size: small;
+	border: solid thin #d3d3d3;
+	border-radius: 20px;
+	padding: 5px;
+}
+
+.media .options span.active {
+/* 	background-color: seagreen; */
+/* 	color: black; */
+}

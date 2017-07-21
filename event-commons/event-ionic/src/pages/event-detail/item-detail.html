@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-capitalize>{{event.place}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="editEvent()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-card>
+  		
+  		<img src="{{event.image}}" style="max-height: 300px;"/>
+  		
+  		<ion-card-content>
+    		<ion-card-title text-capitalize>
+      			{{event.name}}
+      		</ion-card-title>
+      			<p>
+    			<span>
+    				<span>{{ event.dateStart | date:'EEE dd/MM/yyyy'}}</span>
+    			</span>
+    			<br>
+    			<span text-capitalize>{{event.place}}</span>
+    		</p>
+  		</ion-card-content>
+  		
+  		<ion-row>
+		    <ion-col>
+		      <button ion-button icon-left clear small>
+		        <ion-icon name="headset"></ion-icon>
+		        <div>{{event.category}}</div>
+		      </button>
+		    </ion-col>
+		    <ion-col *ngIf="event.price > 0">
+		      <span ion-button icon-left clear small>
+		        <ion-icon name="logo-euro"></ion-icon>
+		        <div>{{event.price}}</div>
+		      </span>
+		    </ion-col>
+		    <ion-col *ngFor="let tag of event.tags">
+		      <span ion-button icon-left clear small>
+		        <ion-icon name="pricetag"></ion-icon>
+		        <div>{{tag}}</div>
+		      </span>
+		    </ion-col>
+		  </ion-row>
+		  
+		  <div class="video-container" *ngIf="event.youtube">
+            <iframe [src]="getYoutube()" frameborder="0" allowfullscreen></iframe>
+          </div>
+		  		
+  		
+	</ion-card>
+</ion-content>
+ 

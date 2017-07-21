@@ -1,0 +1,21 @@
+<div class="facet-box">
+	<div class="facet-box-header">
+		<span class="facet-box-title">
+			<span [ngClass]="icon"></span>
+			<span *ngIf="title">{{title}}</span>
+		</span>
+		<span class="pull-right">
+			<span class="badge" *ngIf="(!selected || selected.length == 0) && !isOpen">({{getSize()}})</span>
+			<span class="fa fa-trash-o" *ngIf="selected && selected.length > 0" (click)="resetFacet()"></span>
+		</span>
+		<div *ngIf="selected && !isOpen" class="facet-selected">
+			{{selected.join()}}
+		</div>
+	</div>
+	<hr>
+	<div *ngIf="isOpen">
+		<event-facet #facets [key]="key" [colSize]="colSize" [maxSize]="currentSize"></event-facet>
+		<div *ngIf="canMore()" (click)="changeLimit()">more</div>
+		<div *ngIf="canLess()" (click)="changeLimit()">less</div>
+	</div>
+</div>

@@ -1,0 +1,70 @@
+.result {
+	height: 100%;
+}
+
+:host /deep/ .resultLoader {
+	padding: 10px;
+	background-color: white;
+	font-size: medium;
+	margin: 5px;
+}
+
+:host /deep/ .resultLoaderError {
+	padding: 0px;
+	margin-bottom: 5px;
+	background-color: white;
+	font-size: small;
+	text-align: center;
+	color: black;
+	text-transform: capitalize;
+/* 	margin: 5px; */
+}
+
+.result .scroll {
+	height: 100%;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.result ul {
+	list-style: none;
+	padding: 0px;
+	padding-top: 5px;
+}
+
+
+.result .box-when {
+	font-weight: bold;
+	background-color: white;
+	padding: 10px;
+	font-size: small;
+	text-transform: uppercase;
+	border-bottom: groove thin;
+/* 	margin-top: 5px; */
+	margin-bottom: 5px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.result .box-when .btn-facet {
+	font-weight: normal;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #0275d8;
+	cursor: pointer;
+	margin-bottom: 5px;
+	text-transform: capitalize;
+}
+
+.result .box-when .btn-facet.active {
+/* 	background-color: seagreen; */ 
+	border-bottom: solid 5px orange;	
+}
+
+.result .box-when .btn-facet:HOVER {
+	text-decoration: underline;	
+}
+
+.result .box-when hr {
+	margin: 0px;
+	margin-bottom: 5px;	
+}

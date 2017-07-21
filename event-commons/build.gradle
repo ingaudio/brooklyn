@@ -1,0 +1,11 @@
+
+version='0.0.1'
+
+allprojects {
+	task welcome() {
+		doLast { task ->
+			println("welcome from project: $project.name - $project.version")
+		}
+	}
+}
+

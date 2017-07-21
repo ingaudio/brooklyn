@@ -1,0 +1,8 @@
+<div class="facets">
+	<ul class="facet-list">
+		<li *ngFor="let facet of currentList" class="facet-item" [ngClass]="{'active': eventService.isFilterActive(key, facet.name) }" [ngStyle]="{'width': colSize}" (click)="clickOn(facet.name)">
+				<div *ngIf="facet.count > 0" class="pull-right">({{facet.count}})</div>
+				<div class="facet-name">{{facet.name}}</div>
+		</li>
+	</ul>
+</div>

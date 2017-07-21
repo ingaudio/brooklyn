@@ -1,0 +1,58 @@
+<ion-menu [content]="content" (ionClose)="menuClosed()">
+<ion-header>
+    <ion-toolbar>
+		<ion-buttons left>
+      		<button ion-button icon-only menuClose>
+        		<ion-icon name="arrow-back"></ion-icon>
+      		</button>
+    	</ion-buttons>
+		<ion-searchbar (ionInput)="search($event)"></ion-searchbar>		
+     	<ion-buttons end *ngIf="isTrashEnable()">
+      		<button ion-button icon-only (click)="trashAll()">
+	       		<ion-icon name="trash"></ion-icon>
+	    	</button>
+   		 </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+	<ion-content> 
+	 	<ion-list *ngIf="events && events.facets">
+	 		<button ion-item icon-right (click)="alertCategory()" *ngIf="events.facets['category']">
+	 			<ion-icon name='headset' item-start></ion-icon>
+				<h2>Category</h2>
+				<p> 
+					<span *ngFor="let val of events.category">{{val}}&nbsp;</span>
+				</p>
+				 <ion-badge item-end *ngIf="getBadge('category', events.category) > 0">{{getBadge('category', events.category)}}</ion-badge>
+			</button>
+			<button ion-item icon-right (click)="alertTags()" *ngIf="events.facets['tags']">
+	 			<ion-icon name='pricetags' item-start></ion-icon>
+				<h2>Tags</h2>
+				<p> 
+					<span *ngFor="let val of events.tags">{{val}}&nbsp;</span>
+				</p>
+				 <ion-badge item-end *ngIf="getBadge('tags', events.tags) > 0">{{ getBadge('tags', events.tags) }}</ion-badge>
+			</button>
+			<button ion-item icon-right (click)="alertTime()" *ngIf="events.facets['time']">
+	 			<ion-icon name='calendar' item-start></ion-icon>
+				<h2>Time</h2>
+				<p> 
+					<span *ngFor="let val of events.time">{{val}}&nbsp;</span>	  		
+				</p>
+				 <ion-badge item-end *ngIf="getBadge('time', events.time) > 0">{{getBadge('time', events.time)}}</ion-badge>
+			</button>
+			<button ion-item icon-right (click)="alertPlace()" *ngIf="events.facets['place']">
+	 			<ion-icon name='locate' item-start></ion-icon>
+				<h2>Place</h2>
+				<p> 
+					<span *ngFor="let val of events.place">{{val}}&nbsp;</span>
+				</p>
+				 <ion-badge item-end *ngIf="getBadge('place', events.place) > 0">{{getBadge('place', events.place)}}</ion-badge>
+			</button>
+	  	</ion-list>
+	  	<div text-center>
+			<ion-note>Found {{events.count}} events in 5 ms</ion-note>
+		</div>
+	</ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

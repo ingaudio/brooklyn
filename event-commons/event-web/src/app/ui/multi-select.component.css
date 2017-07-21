@@ -1,0 +1,10 @@
+:host /deep/ .dropdown-menu {
+	display: block !important;
+}
+
+:host /deep/ .ui-select-match-item {
+	padding: 5px;
+	margin: 5px;
+	font-size: small;
+}
+

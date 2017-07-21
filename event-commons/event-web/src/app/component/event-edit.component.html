@@ -1,0 +1,134 @@
+<ngb-tabset>
+	<ngb-tab >
+		<ng-template ngbTabTitle>
+			<div class="tabTitle">
+				<i class="fa fa-info"></i>
+				<span>Detail</span>
+			</div>
+		</ng-template>
+		<ng-template ngbTabContent>
+			<div class="tabContent">
+				<div class="form-group text-left">
+					<label class="col-form-label form-control-sm">Title</label>
+					<input [(ngModel)]="event.name" type="text" class="form-control form-control-sm" placeholder="set event's title...">
+				</div>
+				<div class="form-group text-left">
+					<label class="col-form-label form-control-sm">Description</label>
+					<textarea [(ngModel)]="event.description" rows="2" class="form-control form-control-sm" placeholder="set event's description..."></textarea>
+				</div>
+ 			</div>	
+		</ng-template>
+	</ngb-tab>
+		<ngb-tab >
+			<ng-template ngbTabTitle>
+				<div class="tabTitle">
+					<i class="fa fa-bolt"></i>
+					<span>What</span>
+				</div>
+			</ng-template>
+			<ng-template ngbTabContent>
+				<div class="tabContent">
+					<div class="form-group text-left">
+						<label class="col-form-label form-control-sm">Category</label>
+						<single-select placeholder="set event's category..." term="category" [initialValue]="event.category" (onDataChange)="event.category=$event"></single-select>
+					</div>
+					<div class="form-group text-left">
+						<label class="col-form-label form-control-sm">Tags</label>
+						<multi-select edit="true" placeholder="set event's tags..." term="tags" [initialValue]="event.tags" (onDataChange)="event.tags=$event"></multi-select>
+					</div>
+				</div>	
+			</ng-template>
+		</ngb-tab>
+		<ngb-tab >
+			<ng-template ngbTabTitle>
+				<div class="tabTitle">
+					<i class="fa fa-calendar"></i>
+					<span>When</span>
+				</div>
+			</ng-template>
+			<ng-template ngbTabContent>
+				<div class="tabContent">
+					<div class="form-group text-left">
+						<label class="col-form-label form-control-sm">Date Start</label>
+						<datetime-picker [(date)]="event.dateStart" placeholder="set event's start date..."></datetime-picker>
+					</div>
+					<div class="form-group text-left">
+						<label class="col-form-label form-control-sm">Date End</label>
+						<datetime-picker [(date)]="event.dateEnd" placeholder="set event's end date..."></datetime-picker>
+					</div>
+				</div>	
+			</ng-template>
+		</ngb-tab>
+		<ngb-tab >
+			<ng-template ngbTabTitle>
+				<div class="tabTitle">
+					<i class="fa fa-map-marker"></i>
+					<span>Where</span>
+				</div>
+			</ng-template>
+			<ng-template ngbTabContent>
+				<div class="tabContent">
+					<div class="form-group text-left" >
+						<label class="col-form-label form-control-xs">Place</label>
+						<single-select edit="true" placeholder="set event's place..." term="place" [initialValue]="event.place" (onDataChange)="onSelectPlaceChange($event)"></single-select>
+					</div>
+					<loader #loaderPlace></loader>
+					<div class="overlay-geocode" *ngIf="geoAddressMode" >
+						<div class="form-group text-left" [ngClass]="{ 'has-danger': isAddressError }">
+							<label class="col-form-label form-control-sm">Address</label>
+							<div class="row">
+								<div class="col-9">
+									<input [(ngModel)]="event.address" [ngClass]="{ 'form-control-danger': isAddressError }" type="text" class="form-control form-control-sm" placeholder="set event's address...">
+								</div>
+								<div class="col-3 text-center">
+									<span class="btn btn-primary btn-sm" (click)="onGeocodeAddress(event.address)">
+										<i class="fa fa-location-arrow"></i>
+										<span>geo</span>
+									</span>									
+								</div>
+							</div>
+							
+							<div class="form-control-feedback" *ngIf="isAddressError">Sorry but the address is not valid. Try to geocode another one !!!</div>
+						</div>
+					</div>
+					<div class="overlay-map" *ngIf="geoMapMode">
+						<div class="text-left address">
+							<span class="float-right btn btn-link changeAddress" (click)="activeAddressMode()">change address</span>
+							<span class="addressData">
+								<span>Address:</span>
+								<span>{{event.address}}</span>
+							</span>
+						</div>
+						<div class="mapContainer">
+							<event-map [(event)]="event" height="150px"></event-map>
+						</div>
+					</div>
+					
+				</div>	
+			</ng-template>		
+		</ngb-tab>
+		<ngb-tab >
+			<ng-template ngbTabTitle>
+				<div class="tabTitle">
+					<i class="fa fa-heart"></i>
+					<span>Media</span>
+				</div>
+			</ng-template>
+			<ng-template ngbTabContent>
+				<div class="tabContent">
+						<div class="form-group text-left">
+							<label class="col-form-label form-control-sm">Page Link</label>
+							<input [(ngModel)]="event.url" type="text" class="form-control form-control-sm" placeholder="set event's url...">
+						</div>
+						<div class="form-group text-left">
+							<label class="col-form-label form-control-sm">Gallery Link</label>
+							<input [(ngModel)]="event.image" type="text" class="form-control form-control-sm" placeholder="set event's image...">
+						</div>
+						<div class="form-group text-left">
+							<label class="col-form-label form-control-sm">Youtube Link</label>
+							<input [(ngModel)]="event.youtube" type="text" class="form-control form-control-sm" placeholder="set event's video: http://www.youtube.com/embed/yJGL1hdl8Cw">
+						</div>								
+				</div>	
+			</ng-template>		
+		</ngb-tab>
+</ngb-tabset>

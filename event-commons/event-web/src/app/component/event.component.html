@@ -1,0 +1,121 @@
+<div class="event">
+	<div class="row header">
+		<div class="col-1"><img class="img-responsive img-avatar" onerror="this.src='/assets/anon.png'" alt="avatar"
+				src="https://lh3.googleusercontent.com/-ijkRsOT9ZZ8/AAAAAAAAAAI/AAAAAAAAAAA/AI6yGXy3uY1uKKnsi5U1QocEN7u49nbrVQ/s64-c-mo/photo.jpg"></div>
+		<div class="col-8">
+			<div class="title">{{event.name}}</div>
+		</div>
+		<div class="col-3 options">
+			<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+  				<button type="button" class="btn btn-link" (click)="editMode = !editMode" *ngIf="userService.canEdit(event)"><i class="fa fa-pencil"></i></button>
+  				<div ngbDropdown class="d-inline-block">
+	      			<button class="btn btn-link" id="dropdownBasic1" ngbDropdownToggle></button>
+	   				<div class="dropdown-menu float-lg-left" aria-labelledby="dropdownBasic1">
+	   					<button class="dropdown-item"><i class="fa fa-facebook-square"></i>&nbsp;<span>Share Facebook</span></button>
+	   					<button class="dropdown-item"><i class="fa fa-google-plus-square"></i>&nbsp;<span>Share Google+</span></button>
+				        <button class="dropdown-item"><i class="fa fa-ban"></i>&nbsp;<span>Report</span></button>
+	  				</div>
+	    		</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mainContent">
+		<div class="col-12 text-center editPanel" *ngIf="editMode">
+			<event-edit [myPosition]="myPosition" [(event)]="event"></event-edit>
+			<loader #loaderSave></loader>
+			<div class="float-right">
+				<button class="btn btn-default" (click)="onEditCancel()">Cancel</button>
+				<button class="btn btn-primary" (click)="onEditSave()">Save</button>
+			</div>
+		</div>
+		<div class="col-12 text-left viewPanel" *ngIf="!editMode" >
+			<div class="row">
+				<div class="col-lg-12">
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2 text-center">
+					<div class="contentButtons">
+						<span *ngIf="event.image" class="btn btn-link" [ngClass]="{ 'active': selectedIndex == 1}" (click)="selectedIndex=1" ><i class="fa fa-picture-o"></i></span>
+						<span *ngIf="event.coordinate" class="btn btn-link" [ngClass]="{ 'active': selectedIndex == 2}" (click)="selectedIndex=2"  ><i class="fa fa-map-o"></i></span>
+						<span *ngIf="event.youtube" class="btn btn-link" [ngClass]="{ 'active': selectedIndex == 3}" (click)="selectedIndex=3"  ><i class="fa fa-youtube"></i></span>
+					</div>	
+				</div>
+				<div class="col-7 contentGallery text-left" *ngIf="selectedIndex == 1">
+						<img alt="{{event.name}}" src="{{event.image}}" class="img-fluid" onerror="this.src='/assets/not-found.png'">
+				</div>
+				<div class="col-7 contentMap" *ngIf="selectedIndex == 2">
+					<event-map [(event)]="event" [myPosition]="myPosition" height="200px"></event-map>
+				</div>
+				<div class="col-7 contentYoutube" *ngIf="selectedIndex == 3">
+					<iframe [src]="youtubeURL" height="200px" width="100%"></iframe>
+				</div>	
+				<div class="col-3 contentCategory">
+					<div class="menuCategory">
+					</div>
+					<div class="menuHashtag">
+						<div>
+							<i class="fa fa-bolt"></i>
+							{{event.category}}
+						</div>
+						<div *ngIf="event.price > 0">
+							<i class="fa fa-euro"></i>
+							{{event.price}}
+						</div>
+						<code *ngFor="let tag of event.tags"><i class="fa fa-hashtag"></i><span>{{tag}}</span></code>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<hr>
+		</div>
+	</div> 
+	<div class="row">
+		<div class="col-9">
+			<div class="row addressBox">
+				<div class="col-2 addressLogo">
+					<div>{{getDateMonth()}}</div>
+					<div>{{getDateDay()}}</div>
+				</div>
+				<div class="col-10 addressContent">
+					<div style="display: table; height: 100%;">
+						<div style="display: table-cell; vertical-align: middle;">
+							<div>{{getDate(event.dateStart)}}</div>
+							<div>{{getDate(event.dateEnd)}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row placeBox">
+				<div class="col-2 placeLogo">
+					<span class="fa fa-map-marker"></span>
+				</div>
+				<div class="col-10 placeContent">
+					<div style="display: table; height: 100%;">
+						<div style="display: table-cell; vertical-align: middle;">
+							<div class="place">{{event.place}}</div>
+							<div>{{event.address}}</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="col-3">
+			<div style="display: table; width: 100%; height: 100%">
+				<div class="socialButtons" style="display: table-cell; vertical-align: middle; text-align: center;">
+					<loader #loaderSocial></loader>
+					<div class="button-thumbs" *ngIf="loaderSocial.visible == false">
+						<div (click)="rankEvent(loaderSocial,-1)" class="btn btn-link socialButton" [ngClass]="{'active': isUnlike}"><i class="fa fa-thumbs-down"></i></div>
+						<div *ngIf="currentRank != 0" class="socialNumber text-center text-primary">{{currentRank}}</div>
+						<div (click)="rankEvent(loaderSocial,+1)" class="btn btn-link socialButton" [ngClass]="{'active': isLike}"><i class="fa fa-thumbs-up"></i></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

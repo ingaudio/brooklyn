@@ -1,0 +1,204 @@
+.event {
+	background-color: white;
+	margin-bottom: 10px;
+	padding: 10px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+/* First Row (title) */
+
+.event .img-avatar {
+/* 	vertical-align: top; */
+	height: 30px;
+	border-radius: 50px;
+}
+
+.event .title {
+	font-size: large;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+
+.event .date {
+	font-size: small;
+}
+
+.event .options {
+	font-size: small;
+	padding: 5px;
+	text-align: right;;
+}
+
+.event .dropdown-menu {
+	left: -110px;
+	font-size: small;
+}
+
+/* MAIN CONTENT - EDIT */
+
+.mainContent .editPanel {}
+
+/* MAIN CONTENT - VIEW */
+
+.mainContent .whatBox {
+	text-transform: capitalize;
+	font-size: small;
+}
+
+.mainContent .contentGallery img {
+	max-height: 200px;
+}
+
+/* nav buttons */
+
+.mainContent .viewPanel .contentButtons {
+	padding: 5px;
+	margin: 5px;
+	text-align: center;
+}
+
+.mainContent .viewPanel .contentButtons span {
+	display: block;
+	width: 30px;
+	cursor: pointer;
+	
+	font-size: small;
+	padding: 5px;
+	margin-bottom: 5px;
+	
+	border: solid thin none;
+	border-radius: 100px;
+	
+	color: darkseagreen;
+	box-shadow: 1px 1px 1px #888888;
+	
+}
+
+.mainContent .viewPanel .contentButtons span:HOVER {
+	color: orange;
+	background-color: seagreen;
+	opacity: 0.80;
+}
+
+.mainContent .viewPanel .contentButtons span.active {
+	color: orange;
+	background-color: seagreen;
+	opacity: 0.60;
+}
+
+.mainContent .contentCategory {
+	position: relative;
+}
+
+.mainContent .contentCategory .menuCategory {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	font-size: small;
+	text-transform: capitalize;
+/* 	font-weight: bold;	 */
+/* 	text-decoration: underline; */
+/* 	color: seagreen; */
+}
+
+.mainContent .contentCategory .menuHashtag {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-transform: capitalize;
+}
+
+.mainContent .contentCategory .menuHashtag div {
+	padding: 5px;
+	font-size: small;
+}
+
+.mainContent .contentCategory .menuHashtag code {
+	font-size: x-small;
+	margin: 2px;
+	padding: 2px;
+	display: inline-block;
+}
+
+/* Third Row (footer) */
+
+.addressBox {
+	font-size: small;
+	text-transform: capitalize;
+	padding: 0px;
+	margin: 0px;
+	padding-left: 20px;
+}
+
+.addressBox .addressLogo {
+	text-align: center;
+}
+
+.addressBox .addressLogo div:FIRST-CHILD {
+	text-transform: uppercase;
+	color: orange;
+}
+
+.placeBox {
+	font-size: small;
+	text-transform: capitalize;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 5px;
+	padding-left: 20px;
+}
+
+.placeBox .placeLogo {
+	font-size: medium;
+	text-align: center;
+	margin-top: auto; 
+	margin-bottom: auto;
+}
+
+.placeBox .placeContent {
+	font-size: x-small;
+	border-top: dotted thin seagreen;
+	padding-top: 5px;
+}
+
+.placeBox .placeContent .place {
+	font-size: small;
+}
+
+.button-thumbs div {
+	display: inline-block;
+}
+
+.socialButtons {
+	font-size: medium;	
+	
+}
+
+.socialButtons .socialButton {
+	padding: 5px;
+	margin: 10px;
+	width: 30px;
+	border-radius: 30px;
+	box-shadow: 1px 1px 1px #888888;
+}
+
+.socialButtons .socialButton:HOVER {
+	color: orange;
+}
+
+.socialButtons .socialButton.active {
+	background-color: seagreen;
+	color: orange;
+	opacity: 0.60;
+/* 	border-color: orange; */
+	
+}
+
+.socialButtons .socialNumber {
+	font-size: x-small;	
+	text-align: center;
+}
+
+

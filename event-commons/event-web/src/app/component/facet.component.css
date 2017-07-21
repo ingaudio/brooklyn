@@ -1,0 +1,42 @@
+.facets {
+/* 	width: 100%; */
+}
+
+.facets ul {
+	list-style: none;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+.facets li {
+	text-transform: capitalize;
+	font-size: small;
+	padding: 5px;
+	display: inline-block;	
+}
+
+.facets .facet-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.facets li:HOVER {
+	background-color: seagreen;
+	color: white;
+	border-left: solid 5px orange;	
+}
+
+.facets li.active {
+	background-color: seagreen;
+	color: white;
+	border-left: solid 5px orange;	
+}
+
+.facets .facet-count {
+	margin-left: 2px;
+	font-size: x-small;
+}
+

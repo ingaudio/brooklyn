@@ -1,0 +1,19 @@
+<div class="result">
+	<div #scrollList class="scroll" (scroll)="onScroll($event)">
+		<ul *ngIf="events">
+			<li>
+				<div class="box-when" *ngIf="facets && facets['time'] && facets['time'].length > 0">
+					<span><i class="fa fa-calendar"></i>&nbsp;<span class="hidden-sm-down">When</span></span>
+					<span class="float-right">
+						<span *ngFor="let facet of facets['time']" class="btn-facet" (click)="doClickOnFacet('time',facet.name)" [ngClass]="{'active': eventService.isFilterActive('time', facet.name) }">
+							<span>{{facet.name}}</span>
+							<span *ngIf="facet.count > 0">({{facet.count}})</span>
+						</span>
+					</span>
+				</div>
+			</li>
+			<li *ngFor="let event of events; let i = index"><event [myPosition]="myPosition" [(event)]="events[i]"></event></li>
+		</ul>
+		<loader #loaderResult targetClass="resultLoader" errorClass="resultLoaderError" loaderText="...Searching Events to Enjoy..."></loader>
+	</div>
+</div>

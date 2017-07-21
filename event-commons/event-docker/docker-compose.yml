@@ -1,0 +1,13 @@
+version: '2'
+services:
+  solr:
+    build: solr/.
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./solr/cores:/opt/solr/server/solr/mycores
+  mongo:
+    image: mongo:3.0.15
+    ports:
+      - "27017:27017"
+

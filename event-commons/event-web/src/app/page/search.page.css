@@ -1,0 +1,74 @@
+.page {
+	background-color: #d3d3d3;
+}
+
+.page .box {
+	box-shadow: 5px 5px 5px #888888;
+	margin-top: 10px;
+	padding: 5px;
+	background-color: white;
+	font-size: small;
+}
+
+.page .box .header {
+	display: inline;
+}
+
+.page .box .content {
+	float: right;
+}
+
+
+.page .fullHeight {
+	height: 100%;
+}
+
+.page .side-nav {
+	background-color: darkseagreen;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 15px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.page .right-section {
+	margin: 0px;
+	padding: 0px;
+	margin-top: 5px;
+	padding-right: 10px;
+}
+
+.page .box-where {
+	background-color: white;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.page .box-header {
+	padding: 10px;
+	font-size: small;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+ 
+.page .box-header .whereTarget {
+	font-weight: normal;
+	text-transform: capitalize;
+	cursor: pointer;
+	padding: 0px;
+} 
+
+.page .box-header .whereTarget:HOVER {
+	text-decoration: underline;
+}
+
+.page .mapContainer {
+	padding: 5px;
+/* 	padding-top: 0px; */
+}
+
+.page .mapInfo {
+	padding: 5px;
+	
+}
+

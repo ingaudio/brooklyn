@@ -1,0 +1,32 @@
+<event-nav></event-nav>
+<div class="container-fluid page">
+	<div class="container">
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-lg-12 form-inline text-left"> -->
+<!-- 				<input type="text" class="form-control" placeholder="Search for city..."> -->
+<!-- 				<button class="btn btn-primary">Enjoy</button> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<div class="row box" *ngIf="!cities">
+			<div class="col-lg-12 text-center">
+				<h1>Cities Not Available</h1>
+				<br>
+				<h6>...please try again in few minute...</h6>
+			</div>
+		</div>
+		<div class="row box" *ngIf="cities">
+			<div class="col-lg-4" *ngFor="let city of cities">
+				<div class="card">
+				  <img class="card-img-top img-responsive" height="200px" src="/assets/city/{{city.name}}.jpg" alt="Card image cap" onerror="this.src='/assets/city/no-city.png'">
+				  <div class="card-block">
+				    <h4 class="card-title text-capitalize">{{city.name}}</h4>
+				    <p class="card-text">This city offer you <code>{{city.count}}</code> events to join.</p>
+				    <div class="text-right">
+				    	<a [routerLink]="['/enjoy', city.name]" routerLinkActive="active" class="btn btn-primary">Enjoy</a>
+				    </div>
+				  </div>
+				</div>		
+			</div>
+		</div>
+	</div>
+</div>
