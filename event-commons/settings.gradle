@@ -1,5 +1,1 @@
-
-include 'event-docker'
-include 'event-spider'
-include 'event-core'
-include 'event-web'
+include 'event-web', 'event-core', 'event-docker', 'event-spider'

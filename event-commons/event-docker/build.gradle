@@ -17,15 +17,15 @@ task dockerBuild {
 	}
 }
 
-task dockerStart {
+task dockerUp(dependsOn:['dockerBuild']) {
 	doLast {
 		project.exec { ExecSpec e ->
-			e.commandLine composeCommand('up','-d')
+			e.commandLine composeCommand('up')
 		}
 	}
 }
 
-task dockerStop {
+task dockerDown {
 	doLast {
 		project.exec { ExecSpec e ->
 			e.commandLine composeCommand('down')

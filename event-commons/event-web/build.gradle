@@ -1,6 +1,6 @@
 plugins { id "com.moowork.node" version "0.12" }
 
-version='0.0.1'
+//version='0.0.1'
 
 node {
 	version = '6.11.0'
@@ -10,8 +10,17 @@ node {
 	nodeModulesDir = file("${project.projectDir}")
 }
 
-task build(type: NpmTask) {
-	args = ['run', 'build-dev']
+task clean() {
+	doLast {
+		delete "${buildDir}"
+		delete "${projectDir}/dist"
+	}
 }
 
-build.dependsOn(npm_install)
+task build(type: NpmTask, dependsOn: [ 'clean', 'npm_install']) {
+	args = ['run', "build-$profile"]
+}
+
+task serve(type: NpmTask, dependsOn: [ 'npm_install']) {
+	args = ['run', "start"]
+}

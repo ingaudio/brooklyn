@@ -1,11 +1,75 @@
 
 version='0.0.1'
 
+ext {
+	profile = "local"
+}
+
+//Profiles
+task dev() {
+	doLast {
+		profile = "dev"
+	}
+}
+
+//Welcome
 allprojects {
 	task welcome() {
 		doLast { task ->
-			println("welcome from project: $project.name - $project.version")
+			println("welcome from project [$project.name] with profie [$profile]")
 		}
 	}
+}
+
+welcome.mustRunAfter dev
+
+//Clean
+task clean(dependsOn: []) {
+	doLast { 
+		delete "${projectDir}/dist"
+		println("$project.name [$project.version][$profile] clean")
+	}
+}
+
+//Dist
+task dist(dependsOn: [ 'clean', 'distWeb', 'distCore' ]) {
+	doLast { 
+		println("$project.name [$project.version][$profile] dist")
+	}
+}
+
+dist.mustRunAfter dev
+
+task distWeb(type: Zip, dependsOn: [':event-web:build'] ) {
+	from 'event-web/dist'
+	destinationDir file("dist/release-$project.version-$profile/")
+	baseName = 'enjoy-web'
+}
+
+task distCore(type: Copy, dependsOn:[':event-core:build']) {
+	from 'event-core/build/libs'
+	into "dist/release-$project.version-$profile/"
+	include '*.war'
+}
+
+//Development
+task devWeb(dependsOn:[':event-web:serve']) {
+	doLast {}
+}
+
+task devCore(dependsOn:[':event-core:bootRun']) {
+	doLast {}
+}
+
+task devDocker(dependsOn:[':event-docker:dockerUp']) {
+	doLast {}
+}
+
+task devMode(dependsOn:['devDocker', 'devCore', 'devWeb']) {
+	doLast {}
+}
+
+task devModeStop(dependsOn:[':event-docker:dockerDown']) {
+	doLast {}
 }
 
