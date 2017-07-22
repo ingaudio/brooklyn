@@ -69,8 +69,8 @@ ROBOTSTXT_OBEY = False
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'event.pipelines.EventEnrichment': 100,
-#    'event.pipelines.EventCollision': 200,
-#    'event.pipelines.EventGeocode': 200,
+    'event.pipelines.EventCollision': 200,
+    'event.pipelines.EventGeocode': 200,
 #    'event.pipelines.EventValidator': 800,
     'event.pipelines.EventSolrWriter': 900
 }

@@ -110,9 +110,4 @@ class EventItem(scrapy.Item):
         input_processor=MapCompose(decodeText, beautifyText),
         output_processor=TakeFirst()
     )
-    # Text
-    info = scrapy.Field(
-        input_processor=MapCompose(decodeText),
-        output_processor=Join(" ")
-    )
 

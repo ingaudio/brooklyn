@@ -123,9 +123,35 @@
     <field name="_text_" type="text_general" indexed="true" stored="false" multiValued="true"/>
     <copyField source="*" dest="_text_"/>
 
-	<!-- Event Fields -->
+	<!-- EVENT -->
 	<field name="name" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-	<field name="url" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="description" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+	
+	<!-- WHAT-->
+	<field name="category" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="tags" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+	<field name="price" type="double" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="url" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="image" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="youtube" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+
+	<!-- WHEN -->
+	<field name="dateStart" type="date" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="dateEnd" type="date" indexed="true" stored="true" required="false" multiValued="false"/>
+
+	<!-- WHERE -->
+	<field name="country" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="city" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="locality" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="address" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="coordinate" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+
+	<field name="place" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="zone" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+
+	<!-- EXTRA -->
+	<field name="spiderName" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="spiderSource" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
 
     <!-- Dynamic field definitions allow using convention over configuration
        for fields via the specification of patterns to match field names. 

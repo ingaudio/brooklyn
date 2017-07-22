@@ -7,14 +7,14 @@
 <!-- 				<button class="btn btn-primary">Enjoy</button> -->
 <!-- 			</div> -->
 <!-- 		</div> -->
-		<div class="row box" *ngIf="!cities">
+		<div class="row box" *ngIf="!cities || cities.length == 0">
 			<div class="col-lg-12 text-center">
 				<h1>Cities Not Available</h1>
 				<br>
 				<h6>...please try again in few minute...</h6>
 			</div>
 		</div>
-		<div class="row box" *ngIf="cities">
+		<div class="row box" *ngIf="cities && cities.length > 0">
 			<div class="col-lg-4" *ngFor="let city of cities">
 				<div class="card">
 				  <img class="card-img-top img-responsive" height="200px" src="/assets/city/{{city.name}}.jpg" alt="Card image cap" onerror="this.src='/assets/city/no-city.png'">

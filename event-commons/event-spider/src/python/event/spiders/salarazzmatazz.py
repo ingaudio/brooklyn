@@ -30,8 +30,6 @@ class SalarazzmatazzSpider(scrapy.Spider):
             loader.add_css('name', 'td.sala a::text')
             loader.add_value('url', self.start_urls[0])
             loader.add_css('url', 'td.sala a::attr(href)')
-            #loader.add_value('image', self.start_urls[0])
-            #loader.add_css('image', 'td.inicial img::attr(src)')
             loader.add_value('category', 'music')
             loader.add_value('dateStart', self.extract_date(event.css('span.fecha ::text').extract()))
             loader.add_value('place', 'razzmatazz')
@@ -52,7 +50,7 @@ class SalarazzmatazzSpider(scrapy.Spider):
         loader.add_value('dateStart', " ".join([response.meta['item']["dateStart"], extractRegex(response,".info-artista-top ::text", "[0-9]+:[0-9]+")])) 
         loader.add_value('price',extractRegex(response, ".info-artista-top ::text", "[0-9]+EUR"))
         loader.add_css('youtube', 'iframe::attr(src)')
-        loader.add_css('info', 'div.columnas ::text')
+        #loader.add_css('info', 'div.columnas ::text')
         yield loader.load_item()
 
     def extract_date(self, value):

@@ -13,17 +13,16 @@ from event.items import EventItem
 import logging
 
 SOLR_ENDPOINT = "http://192.168.99.100:8983/solr/eventCore"
-GOOGLE_KEY = "AIzaSyABfQRb-K972MU4v9vT4pELByQnm7ACAQE"
+GOOGLE_KEY = "AIzaSyDG0Y0aWyZdR9_-xjJ0fOShkhma_ePy8LE"
 
 class EventEnrichment(object):
     def process_item(self, item, spider):
-    	item['spiderName'] = spider.name
+    	item['id'] = hashlib.sha256("".join([ str(x) for x in item.items()])).hexdigest()
+        item['spiderName'] = spider.name
         item['spiderSource'] = spider.start_urls[0]        
-        item['id'] = hashlib.sha256("".join([ str(x) for x in item.items()])).hexdigest()
         item['dateStart'] = encodeDate(item['dateStart'])
         item['dateEnd'] = encodeDate(item.get('dateEnd', None))
         item['price'] = float(item.get('price',-1))
-        item['tags'] = ['jazz','rock & roll' ]
         return item
 
 class EventCollision(object):
@@ -47,15 +46,15 @@ class EventGeocode(object):
         if not item.get('coordinate') and item.get('place'):
             logging.info("geocode with solr for place: %s" % item.get('place'))
             results = self.client.search('*:*', **{
-                'fq': 'place_s:"%s"' % (escapeSolrArg(item.get('place')))
+                'fq': 'place:"%s"' % (escapeSolrArg(item.get('place')))
             })
-            if results.hits > 0:
-                item['country']=encodeStr(results.docs[0]['country_s'])
-                item['city']=encodeStr(results.docs[0]['city_s'])
-                item['locality']=encodeStr(results.docs[0]['locality_s'])
-                item['place']=encodeStr(results.docs[0]['place_s'])
-                item['address']=encodeStr(results.docs[0]['address_s'])
-                item['coordinate']=encodeStr(results.docs[0]['coordinate_s'])
+            if results != None and results.hits > 0:
+                item['country']=encodeStr(results.docs[0]['country'])
+                item['city']=encodeStr(results.docs[0]['city'])
+                item['locality']=encodeStr(results.docs[0]['locality'])
+                item['place']=encodeStr(results.docs[0]['place'])
+                item['address']=encodeStr(results.docs[0]['address'])
+                item['coordinate']=encodeStr(results.docs[0]['coordinate'])
         
         if not item.get('coordinate') and item.get('address') and item.get('place'):
             logging.info("geocode with maps for address: %s" % item.get('address'))
