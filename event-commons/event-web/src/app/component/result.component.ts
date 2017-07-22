@@ -14,13 +14,14 @@ export class ResultComponent {
     @ViewChild("loaderResult") loaderResult: LoaderComponent;
 
     @Input() myPosition: any;
-    private events: Array<any>;
+    
+    public events: Array<any>;
     private facets: any;
 
     private currentPage = 0;
     private scrollPage = 0;
     
-    constructor(private eventService: EventService,private cdRef: ChangeDetectorRef) {
+    constructor(public eventService: EventService,private cdRef: ChangeDetectorRef) {
         this.eventService.getQueryAsObservable().subscribe(
             data => { 
                 if (this.loaderResult) { 

@@ -20,7 +20,7 @@ export class SearchPage implements OnInit {
 
     myPosition: any;
     
-    constructor(private eventService: EventService, private userService: UserService, private route: ActivatedRoute) {
+    constructor(public eventService: EventService, private userService: UserService, private route: ActivatedRoute) {
         
         //Results
         this.eventService.getResultAsObservable().subscribe(

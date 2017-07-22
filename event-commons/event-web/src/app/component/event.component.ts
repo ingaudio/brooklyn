@@ -35,7 +35,7 @@ export class EventComponent {
     isLike = false;
     isUnlike = false;
 
-    constructor(private modalService: NgbModal, private sanitizer: DomSanitizer, private eventService: EventService, private socialService: SocialService, private userService: UserService) {
+    constructor(private modalService: NgbModal, private sanitizer: DomSanitizer, public eventService: EventService, private socialService: SocialService, public userService: UserService) {
         this.socialService.getRankEventsAsObservable().subscribe(
             data => {
                 if (data && this.event) {

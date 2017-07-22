@@ -18,6 +18,7 @@ cd event-core
 gradle bootRun
 
 ## Run Angular
+
 cd event-web
 
 ng serve

@@ -63,7 +63,7 @@ export class DateTimePickerComponent implements OnChanges {
 
     @ViewChild("targetInput") targetInput: ElementRef; 
     
-    private overlay = false;
+    public overlay = false;
     
     private ngbDate: NgbDateStruct;
     private ngbTime: NgbTimeStruct;

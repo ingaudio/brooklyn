@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, URLSearchParams, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -9,7 +10,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class ApiService {
 
-    private url: string = 'http://127.0.0.1:8080/rest';
+    private url: string = environment.endpointURL;
     
     constructor(private http: Http) { }
 

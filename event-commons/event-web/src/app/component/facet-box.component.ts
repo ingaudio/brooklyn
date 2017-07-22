@@ -30,7 +30,7 @@ export class FacetBoxComponent {
     
     @Input() key: string;
     
-    private selected: Array<string>;
+    public selected: Array<string>;
     private facets: any;
     private isLimited = true;
     private currentSize = this.maxLimitedSize;

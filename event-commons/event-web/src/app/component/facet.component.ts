@@ -19,8 +19,8 @@ export class FacetComponent implements OnInit {
     
     /* Private */
     private facets: any;
-    private selected = [];
-    private currentList: Array<any>;
+    public selected = [];
+    public currentList: Array<any>;
     
     constructor(private eventService: EventService, private cdRef: ChangeDetectorRef) {
         this.eventService.getQueryAsObservable().subscribe(

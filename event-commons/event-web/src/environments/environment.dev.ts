@@ -5,5 +5,5 @@
 
 export const environment = {
     production: true,
-    endpointURL: 'http://127.0.0.1:8080/rest'
+    endpointURL: 'http://event-tomcat:8080/rest'
 };
