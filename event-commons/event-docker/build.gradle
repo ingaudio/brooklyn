@@ -1,10 +1,20 @@
 
 version='0.1.0'
 
-task dockerClean {
+task cleanAll(dependsOn:['dockerClean']) {
+	doLast {}
+}
+
+task dockerDataClean {
+	doLast {
+		delete "${projectDir}/solr/cores/eventCore/data"
+	}
+}
+
+task dockerClean(dependsOn:['dockerDataClean']) {
 	doLast {
 		project.exec { ExecSpec e ->
-			e.commandLine composeCommand('rm','-f')
+			e.commandLine composeCommand('rm','-f', '-a', '-v')
 		}
 	}
 }

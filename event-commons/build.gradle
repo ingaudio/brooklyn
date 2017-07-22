@@ -31,6 +31,9 @@ task clean(dependsOn: []) {
 	}
 }
 
+task cleanAll(dependsOn: ['clean']) {
+}
+
 //Dist
 task dist(dependsOn: [ 'clean', 'distWeb', 'distCore' ]) {
 	doLast { 
@@ -69,7 +72,7 @@ task devMode(dependsOn:['devDocker', 'devCore', 'devWeb']) {
 	doLast {}
 }
 
-task devModeStop(dependsOn:[':event-docker:dockerDown']) {
+task undevMode(dependsOn:[':event-docker:dockerDown']) {
 	doLast {}
 }
 

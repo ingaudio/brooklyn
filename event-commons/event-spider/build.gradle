@@ -19,29 +19,46 @@ task createVirtualEnv() {
 	}
 }
 
-task setupVirtualEnv() {
+task virtualEnv() {
 	dependsOn createVirtualEnv
 	doLast {
 		project.exec { ExecSpec e ->
 			e.workingDir="build/venv/bin"
 //			e.environment PATH:file('build/venv/bin/').absolutePath
 			e.commandLine='./pip'
-			e.args = ['install', 'scrapy', 'pysolr', 'googlemaps']
+			e.args = ['install', 'scrapy', 'pysolr', 'googlemaps', 'unidecode']
 		}
 	}
 }
 
-task spiderBcn() {
-	dependsOn setupVirtualEnv
+//task spiderBcn() {
+//	dependsOn virtualEnv
+//	doLast {
+//		project.exec { ExecSpec e ->
+//			e.workingDir="src/python"
+//			e.environment PATH:file('build/venv/bin/').absolutePath 
+//			//PYTHONHOME:file('build/venv/bin/').absolutePath
+//			e.commandLine='python'
+//			e.args = ['crawlerBarcelona.py']
+//		}
+//	}
+//}
+
+task crawlRazzmatazz() {
+	dependsOn virtualEnv
 	doLast {
 		project.exec { ExecSpec e ->
 			e.workingDir="src/python"
-			e.environment PATH:file('build/venv/bin/').absolutePath 
+			e.environment PATH:file('build/venv/bin/').absolutePath
 			//PYTHONHOME:file('build/venv/bin/').absolutePath
-			e.commandLine='python'
-			e.args = ['crawlerBarcelona.py']
+			e.commandLine='scrapy'
+			e.args = ['salarazzmatazz']
 		}
 	}
 }
+
+
+
+
 
 

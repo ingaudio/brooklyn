@@ -70,8 +70,8 @@ ROBOTSTXT_OBEY = False
 ITEM_PIPELINES = {
     'event.pipelines.EventEnrichment': 100,
 #    'event.pipelines.EventCollision': 200,
-    'event.pipelines.EventGeocode': 200,
-    'event.pipelines.EventValidator': 800,
+#    'event.pipelines.EventGeocode': 200,
+#    'event.pipelines.EventValidator': 800,
     'event.pipelines.EventSolrWriter': 900
 }
 

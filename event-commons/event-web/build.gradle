@@ -17,6 +17,13 @@ task clean() {
 	}
 }
 
+task cleanAll(dependsOn: ['clean']) {
+	doLast {
+		delete "${projectDir}/node_modules"
+	}
+}
+
+
 task build(type: NpmTask, dependsOn: [ 'clean', 'npm_install']) {
 	args = ['run', "build-$profile"]
 }

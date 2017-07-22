@@ -1,4 +1,7 @@
 
+# Docker shell
+eval "$(docker-machine env default)"
+
 # Build Containers (needed only if you change some configuration)
 docker-compose build
 

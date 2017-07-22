@@ -94,28 +94,7 @@ class EventSolrWriter(object):
         self.client = pysolr.Solr(SOLR_ENDPOINT, timeout=10)
 
     def process_item(self, item, spider):
-        self.client.add([{
-            'id': item.get('id',''),
-            'name_s': item.get('name',''),
-            'url_s': item.get('url',''),
-            'youtube_s': item.get('youtube',''),
-            'category_s' : item.get('category',''),
-            'price_f' : item.get('price', -1),
-            'tags_ss' : item.get('tags',''),
-            'address_s': item.get('address',''),
-            'place_s': item.get('place',''),
-            'zone_s': item.get('zone',''),
-            'image_s': item.get('image',''),
-            'country_s': item.get('country',''),
-            'city_s': item.get('city',''),
-            'locality_s': item.get('locality',''),
-            'coordinate_s': item.get('coordinate',''),
-            'dateStart_dt': item.get('dateStart',''),
-            'dateEnd_dt': item.get('dateEnd',''),
-            'spiderName_s': item.get('spiderName',''),
-            'spiderSource_s': item.get('spiderSource',''),
-            'info_t': item.get('info',''),
-        }])
+        self.client.add([item])
         return item
 
 
