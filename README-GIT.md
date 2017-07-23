@@ -20,6 +20,8 @@ git add *
 git commit -m "<COMMENT TO USE>"
 
 #Push Remote
+git fetch origin
+git rebase origin/master
 git push
 on GIT HUB -> Create Pull Request between: master <-> <feature_branch> 
 
