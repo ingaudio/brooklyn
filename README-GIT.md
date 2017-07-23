@@ -1,6 +1,33 @@
 
 
-# Clone Remote Repository (just first time)
+##Merge Request Approach
+
+#Switch feature-branch
+git checkout dev-gallo
+
+#Update feature_branch with last features
+git fetch origin
+git rebase origin/master
+(!!!conflict to solve!!!)
+
+#Check Status
+git status
+> On branch dev-x
+> Your branch is up-to-date with 'origin/dev-x'.
+
+#Commit Local
+git add *
+git commit -m "<COMMENT TO USE>"
+
+#Push Remote
+git fetch origin
+git rebase origin/master
+git push
+on GIT HUB -> Create Pull Request between: master <-> <feature_branch> 
+
+##GIT COMMAND
+
+#Clone Remote Repository (just first time)
 git clone <GITHUB>
 
 
