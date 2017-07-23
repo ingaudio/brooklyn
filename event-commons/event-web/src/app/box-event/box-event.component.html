@@ -1,0 +1,71 @@
+<div class="box-event">
+	<div class="header">
+		<div class="pull-right">
+			<button class="btn btn-link btn-sm"><i class="fa fa-pencil"></i></button>
+		</div>
+		<div class="image">
+			<img class="img-responsive" alt="avatar" src="{{event.userImage}}" onerror="this.src='/assets/event/anon.png'">
+			<div *ngIf="!event.status" class="img-status"><span class="badge badge-danger">STAGE</span></div>
+		</div>
+		<div class="title">
+			<span>{{event.name}}</span>
+			<br>
+			<span class="subtitle">
+				<span>by</span>
+				<span class="text-capitalize" *ngIf="event.userOwner">{{event.userOwner}}</span>
+				<span class="text-capitalize" *ngIf="!event.userOwner && event.spiderName">{{event.spiderName}}</span>
+				<span *ngIf="!event.modificationDate">on {{event.modificationDate}}</span>
+			</span>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-lg-2 text-center">
+			<div *ngIf="event.image" (click)="eventMode = 0"><i class="fa fa-picture-o"></i></div>
+			<div *ngIf="event.coordinate" (click)="eventMode = 1"><i class="fa fa-map-o"></i></div>
+			<div *ngIf="event.youtube" (click)="eventMode = 2"><i class="fa fa-youtube"></i></div>
+		</div>
+		<div class="col-lg-10">
+			<div *ngIf="eventMode == 0">
+				<img class="img-responsive" width="90%" alt="{{event.name}}" src="{{event.image}}" onerror="this.src='/assets/event/not-found.png'">
+			</div>
+			<div *ngIf="eventMode == 1">
+				<event-map [(event)]="event" width="90%"></event-map>
+			</div>
+			<div *ngIf="eventMode == 2">
+				<iframe [src]="youtubeURL" width="90%" height="300px"></iframe>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-lg-9">
+			<div class="row box-info">
+				<div class="col-lg-2 logo">
+					<div class="month">{{getDateMonth()}}</div>
+					<div>{{getDateDays()}}</div>
+				</div>
+				<div class="col-lg-10 separator">
+					<div>{{getDateFormatted(event.dateStart)}}</div>
+					<div>{{getDateFormatted(event.dateEnd)}}</div>
+				</div>
+			</div>
+			<div class="row box-info">
+				<div class="col-lg-2 logo">
+					<div class="fa fa-map-marker" style="font-size: medium;"></div>
+				</div>
+				<div class="col-lg-10">
+					<div>{{event.place}}</div>
+					<div class="address">{{event.address}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="cell">
+				<div class="btn btn-link cell"><i class="fa fa-thumbs-down"></i></div>
+				<div class="cell">12</div>
+				<div class="btn btn-link cell"><i class="fa fa-thumbs-up"></i></div>
+			</div>
+		</div>
+	</div>
+</div>

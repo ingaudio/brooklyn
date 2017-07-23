@@ -47,4 +47,12 @@ export class FilterBoxComponent implements OnInit {
     ngOnInit() {
     }
 
+    public onClick(facet: any): void {
+        this.eventService.doFilterSwitch(this.key, facet.name);   
+    }
+    
+    public isSelected(facet: any): boolean {
+        return this.selected && this.selected.indexOf(facet.name) != -1;   
+    }
+    
 }

@@ -75,14 +75,10 @@ public class ConverterQueryDTO2FacetQuery implements Converter<QueryDTO, FacetQu
 		target.addFilterQuery(SolrQueryUtil.generateFilterQueryByFilter(source, SolrQueryUtil.FILTER_CITY, ISolrEvent.city));
 		target.addFilterQuery(SolrQueryUtil.generateFilterQueryByFilter(source, SolrQueryUtil.FILTER_PLACE, ISolrEvent.place));
 		
-		
-		
-//		//Time
-//		if(SolrQueryUtil.getFilterQueryTime(source) != null) {
-//			target.addFilterQuery(SolrQueryUtil.getFilterQueryTime(source));
-//		}
-//		//Price
-//		
+		//When
+		if(SolrQueryUtil.getFilterQueryTime(source) != null) {
+			target.addFilterQuery(SolrQueryUtil.getFilterQueryTime(source));
+		}
 		
 	}
 
