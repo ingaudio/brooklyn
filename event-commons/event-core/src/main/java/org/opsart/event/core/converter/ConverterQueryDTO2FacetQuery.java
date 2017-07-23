@@ -51,6 +51,7 @@ public class ConverterQueryDTO2FacetQuery implements Converter<QueryDTO, FacetQu
 		
 		//Faceting Extra
 		populateFacetWhat(source, target);
+		populateFacetWhen(source,target);
 		populateFacetWhere(source,target);
 		
 		
@@ -91,6 +92,11 @@ public class ConverterQueryDTO2FacetQuery implements Converter<QueryDTO, FacetQu
 		//Faceting on Price
 		facets.addFacetByRange(new FieldWithNumericRangeParameters(ISolrEvent.price, 1, 200, 20));
 		
+	}
+	
+	protected void populateFacetWhen(QueryDTO source, FacetQuery target) {
+		FacetOptions facets = target.getFacetOptions();
+		SolrQueryUtil.getFacetQueryTime(source).forEach(filter -> { facets.addFacetQuery(filter); });
 	}
 	
 	protected void populateFacetWhere(QueryDTO source, FacetQuery target) {

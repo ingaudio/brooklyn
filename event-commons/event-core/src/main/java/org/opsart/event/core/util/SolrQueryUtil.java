@@ -32,11 +32,11 @@ public class SolrQueryUtil {
 	
 	// FIXME //TODO Date Time is calculated server side!!! where is the
 	// client??!?!?!?!?
-	// Generic Range Query: dateStart_dt:[X TO Y] OR (dateStart_dt:[* TO X] AND
-	// dateEnd_dt:[X TO *])
-	public static final String FQ_TODAY = "dateStart_dt:[NOW/DAY TO NOW/DAY+1DAY] OR (dateStart_dt:[* TO NOW/DAY] AND dateEnd_dt:[NOW/DAY TO *])";
-	public static final String FQ_TOMORROW = "dateStart_dt:[NOW+1DAY/DAY TO NOW+1DAY/DAY+2DAYS] OR (dateStart_dt:[* TO NOW+1DAY/DAY] AND dateEnd_dt:[NOW+1DAY/DAY TO *])";
-	public static final String FQ_WEEK = "dateStart_dt:[NOW/DAY TO NOW/DAY+7DAYS] OR (dateStart_dt:[* TO NOW/DAY] AND dateEnd_dt:[NOW/DAY TO *])";
+	// Generic Range Query: dateStart:[X TO Y] OR (dateStart:[* TO X] AND
+	// dateEnd:[X TO *])
+	public static final String FQ_TODAY = "dateStart:[NOW/DAY TO NOW/DAY+1DAY] OR (dateStart:[* TO NOW/DAY] AND dateEnd:[NOW/DAY TO *])";
+	public static final String FQ_TOMORROW = "dateStart:[NOW+1DAY/DAY TO NOW+1DAY/DAY+2DAYS] OR (dateStart:[* TO NOW+1DAY/DAY] AND dateEnd:[NOW+1DAY/DAY TO *])";
+	public static final String FQ_WEEK = "dateStart:[NOW/DAY TO NOW/DAY+7DAYS] OR (dateStart:[* TO NOW/DAY] AND dateEnd:[NOW/DAY TO *])";
 
 	public static final String[] PIVOT_GEO = { ISolrEvent.coordinate, ISolrEvent.address, ISolrEvent.place };
 

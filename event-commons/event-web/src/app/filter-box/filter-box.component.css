@@ -1,0 +1,42 @@
+
+.filter-box {
+	background-color: white;
+	padding: 5px;
+	margin: 0px;
+	margin-bottom: 5px;
+}
+
+.filter-time .filter-header {
+	font-weight: bold;
+	font-size: small;
+	
+}
+
+.filter-time ul.filter-items {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	display: inline-block;
+}
+
+.filter-time ul.filter-items li .facet-count {
+	font-size: x-small;
+	font-weight: bold;
+	background-color: darkseagreen;
+	padding: 3px;	
+	border-radius: 20px;
+}
+
+.filter-time ul.filter-items li {
+	display: inline-block;
+	text-transform: capitalize;
+	font-size: small;
+	margin: 5px;
+	padding-bottom: 2px;
+	cursor: pointer;	
+}
+
+.filter-time ul.filter-items li:HOVER {
+	border-bottom: solid 5px orange;
+	margin-bottom: 0px;	
+}
