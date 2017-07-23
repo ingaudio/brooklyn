@@ -1,8 +1,6 @@
 import { ViewChild, Component, OnInit, OnChanges, Input, ChangeDetectorRef } from '@angular/core';
 import { EventService } from '../provider/event.service';
 
-import { FacetComponent } from './facet.component';
-
 @Component({
   selector: 'event-facet-box',
   templateUrl: './facet-box.component.html',
@@ -10,30 +8,21 @@ import { FacetComponent } from './facet.component';
 })
 export class FacetBoxComponent {
     
-    @ViewChild("") facetComponent: FacetComponent;
-    
     @Input() title: string;
     
     @Input() icon: string;
     
-    /* Number of list columns */
-    @Input() colSize = "100%";
-    
-    /* Max Allowed Size (no more than) */
-    @Input() maxAllowedSize = 10;
-    
-    /* Limited Size (limit to) */
-    @Input() maxLimitedSize = 3;
-    
-    /* Is option open */
-    @Input() isOpen = true;
-    
     @Input() key: string;
     
+    @Input() maxSize = 10;
+    
+    @Input() limitedSize = 3;
+    
     public selected: Array<string>;
-    private facets: any;
-    private isLimited = true;
-    private currentSize = this.maxLimitedSize;
+    public facets: Array<string>;
+    
+    public currentList: Array<string>;
+    public currentSize = 0;
     
     constructor(private eventService: EventService, private cdRef: ChangeDetectorRef) {
         this.eventService.getQueryAsObservable().subscribe(
@@ -43,7 +32,7 @@ export class FacetBoxComponent {
                 } else {
                     this.selected = new Array<string>();    
                 }
-                this.updateSize();
+//                this.updateList();
             },
             error => {
                 console.error("fail to [FacetBoxComponent] search: " + error); 
@@ -53,9 +42,8 @@ export class FacetBoxComponent {
             data =>{
                 if(data) {
                     this.facets = data.facets;
-                    
                 }   
-                this.updateSize(); 
+                this.updateList(); 
             },
             error => {
                 console.error("fail to [FacetBoxComponent] search: " + error); 
@@ -63,48 +51,42 @@ export class FacetBoxComponent {
          );
     }
     
-//    ngAfterViewInit() {
-//        this.updateSize();
-//    }
-    
     ngOnInit() {
-        this.updateSize();
+        if(this.maxSize != 0 && this.limitedSize != 0) {
+            this.currentSize = Math.min(this.maxSize, this.limitedSize);   
+        }
+        this.updateList();
     }
     
-    public canMore(): boolean {
-        return this.isLimited && this.currentSize < Math.min(this.maxAllowedSize, this.facets[this.key].length);
+    public switchFacet(facet: any): void {
+        this.eventService.doFilterSwitch(this.key, facet.name);   
     }
     
-    public canLess(): boolean {
-        return !this.isLimited && this.currentSize > Math.min(this.maxLimitedSize, this.facets[this.key].length);
+    public hasMore(): boolean {
+        return this.currentSize < this.facets[this.key].length && this.currentSize <= this.limitedSize;   
+    }
+
+    public hasLess(): boolean {
+        return this.currentSize > this.limitedSize;   
     }
     
     public changeLimit(): void {
-        this.isLimited = !this.isLimited;
-        this.updateSize();   
+        console.log("changeLimit");
+        if(this.hasMore()) this.currentSize = this.maxSize;
+        else this.currentSize = this.limitedSize;
+        this.updateList();    
     }
     
-    public getSize(): number {
-        if(this.facets && this.key && this.facets[this.key]) { 
-            return this.facets[this.key].length;
-        } else {
-            return 0;
+    public updateList(): void {
+        console.log("facet update list");
+        if(this.currentSize && this.facets && this.key) {
+            this.currentList = new Array<string>();                
+            for(let index in this.facets[this.key]) {
+                if(+index < this.currentSize) { 
+                    this.currentList.push(this.facets[this.key][index]);
+                }
+            }            
         }
-    }
-    
-    public resetFacet(): void {
-        console.log("reset facet");
-        this.eventService.resetFilter(this.key);   
-    }
-    
-    public updateSize(): void {
-        console.log("update size");
-            if(this.isLimited) {
-                let count = (this.selected ? this.selected.length : 0);
-                this.currentSize = Math.max(count, Math.min(this.maxLimitedSize, this.maxAllowedSize));    
-            } else if(this.facets && this.facets[this.key]) {
-                this.currentSize = Math.min(this.facets[this.key].length, this.maxAllowedSize);
-            }
     }
     
 }

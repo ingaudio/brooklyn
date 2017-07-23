@@ -16,7 +16,7 @@ public class SolrQueryUtil {
 
 	//Extra Query
 	public static final String QUERY_TEXT = "query";
-	public static final String QUERY_PAGE = "page";
+	public static final String QUERY_PAGE = "page"; 
 	
 	//What Filters
 	public static final String FILTER_CATEGORY = "category";

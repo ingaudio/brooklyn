@@ -55,7 +55,7 @@ export class FacetComponent implements OnInit {
         this.eventService.doFilterSwitch(this.key, name);
     }
 
-    private updateList() {
+    public updateList() {
         if(this.facets && this.key && this.facets[this.key]) {
             if(this.maxSize > 0 && this.facets[this.key].length > this.maxSize) {
                 this.currentList = new Array<any>();

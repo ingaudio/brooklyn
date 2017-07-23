@@ -68,7 +68,7 @@ task devDocker(dependsOn:[':event-docker:dockerUp']) {
 	doLast {}
 }
 
-task devMode(dependsOn:['devDocker', 'devWeb']) {
+task devMode(dependsOn:['devDocker', 'devWeb', 'devCore']) {
 	doLast {}
 }
 

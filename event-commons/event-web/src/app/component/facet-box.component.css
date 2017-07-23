@@ -13,10 +13,6 @@
 	text-transform: capitalize;
 }
 
-.facet-box .badge {
-	color: seagreen;
-}
-
 .facet-box hr {
 	padding: 0px;
 	margin: 5px;
@@ -27,3 +23,49 @@
 	text-align: right;
 	text-transform: capitalize;
 }
+
+.facet-box ul {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.facet-box li.facet-item {
+	text-transform: capitalize;
+	font-size: small;
+	margin-left: 5px;
+}
+
+.facet-box .facet-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+	width: 90%;
+	cursor: pointer;
+}
+
+.facet-box li.facet-item:HOVER {
+	background-color: seagreen;
+	color: white;
+	border-left: solid 5px orange;	
+	margin-left: 0px;
+}
+
+.facet-box li.facet-item.active {
+	background-color: seagreen;
+	color: white;
+	border-left: solid 5px orange;
+	margin-left: 0px;	
+}
+
+.facet-box li.facet-change {
+	font-size: xx-small;
+	text-align: right;
+	cursor: pointer;
+}
+
+.facet-box li.facet-change:HOVER {
+	text-decoration: underline;
+}
+

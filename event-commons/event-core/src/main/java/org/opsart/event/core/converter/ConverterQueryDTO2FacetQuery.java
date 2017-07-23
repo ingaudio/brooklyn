@@ -6,11 +6,11 @@ import org.opsart.event.core.util.SolrQueryUtil;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.solr.core.query.Criteria;
 import org.springframework.data.solr.core.query.FacetOptions;
+import org.springframework.data.solr.core.query.FacetOptions.FieldWithNumericRangeParameters;
 import org.springframework.data.solr.core.query.FacetQuery;
 import org.springframework.data.solr.core.query.SimpleFacetQuery;
 import org.springframework.data.solr.core.query.SimpleStringCriteria;
 import org.springframework.data.solr.core.query.SolrPageRequest;
-import org.springframework.data.solr.core.query.SpellcheckOptions;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -50,6 +50,7 @@ public class ConverterQueryDTO2FacetQuery implements Converter<QueryDTO, FacetQu
 		target.getFacetOptions().setFacetLimit(50);
 		
 		//Faceting Extra
+		populateFacetWhat(source, target);
 		populateFacetWhere(source,target);
 		
 		
@@ -64,20 +65,34 @@ public class ConverterQueryDTO2FacetQuery implements Converter<QueryDTO, FacetQu
 	
 	protected void populateFilterQuery(QueryDTO source, FacetQuery target) {
 
+		//What
+		target.addFilterQuery(SolrQueryUtil.generateFilterQueryByFilter(source, SolrQueryUtil.FILTER_CATEGORY, ISolrEvent.category));
+		target.addFilterQuery(SolrQueryUtil.generateFilterQueryByFilterPrice(source, ISolrEvent.price));
+		
 		//Where
 		target.addFilterQuery(SolrQueryUtil.generateFilterQueryByFilter(source, SolrQueryUtil.FILTER_COUNTRY, ISolrEvent.country));
 		target.addFilterQuery(SolrQueryUtil.generateFilterQueryByFilter(source, SolrQueryUtil.FILTER_CITY, ISolrEvent.city));
 		target.addFilterQuery(SolrQueryUtil.generateFilterQueryByFilter(source, SolrQueryUtil.FILTER_PLACE, ISolrEvent.place));
+		
+		
 		
 //		//Time
 //		if(SolrQueryUtil.getFilterQueryTime(source) != null) {
 //			target.addFilterQuery(SolrQueryUtil.getFilterQueryTime(source));
 //		}
 //		//Price
-//		target.addFilterQuery(SolrQueryUtil.generateFilterQueryByFilterPrice(source, ISolrEvent.price));
+//		
 		
 	}
 
+	protected void populateFacetWhat(QueryDTO source, FacetQuery target) {
+		FacetOptions facets = target.getFacetOptions();
+		
+		//Faceting on Price
+		facets.addFacetByRange(new FieldWithNumericRangeParameters(ISolrEvent.price, 1, 200, 20));
+		
+	}
+	
 	protected void populateFacetWhere(QueryDTO source, FacetQuery target) {
 		FacetOptions facets = target.getFacetOptions();
 

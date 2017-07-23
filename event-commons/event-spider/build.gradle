@@ -44,19 +44,6 @@ task virtualEnv() {
 //	}
 //}
 
-task crawlRazzmatazz() {
-	dependsOn virtualEnv
-	doLast {
-		project.exec { ExecSpec e ->
-			e.workingDir="src/python"
-			e.environment PATH:file('build/venv/bin/').absolutePath
-			//PYTHONHOME:file('build/venv/bin/').absolutePath
-			e.commandLine='scrapy'
-			e.args = ['salarazzmatazz']
-		}
-	}
-}
-
 
 
 
