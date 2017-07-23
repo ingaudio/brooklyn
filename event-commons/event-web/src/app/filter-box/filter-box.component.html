@@ -1,0 +1,14 @@
+<div class="filter-box">
+	<div class="filter-time">
+		<span class="filter-header">
+			<i class="fa fa-calendar"></i>
+			<span>When</span>
+		</span>
+		<ul class="filter-items">
+			<li *ngFor="let facet of facets">
+				<span>{{facet.name}}</span>
+				<span class="facet-count">{{facet.count}}</span>
+			</li>
+		</ul>
+	</div>	
+</div>

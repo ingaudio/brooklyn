@@ -34,6 +34,7 @@ import { DateTimePickerComponent } from './ui/datetime-picker.component';
 import { LoaderComponent } from './ui/loader.component'; 
 
 import { LoginModal } from './modal/login.modal';
+import { FilterBoxComponent } from './filter-box/filter-box.component';
 
 
 const appRoutes: Routes = [
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
         DateTimePickerComponent,
         LoaderComponent,
         SearchPage,
-        CityPage
+        CityPage,
+        FilterBoxComponent
     ],
     imports: [
         BrowserModule,

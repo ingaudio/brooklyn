@@ -63,11 +63,11 @@ export class FacetBoxComponent {
     }
     
     public hasMore(): boolean {
-        return this.currentSize < this.facets[this.key].length && this.currentSize <= this.limitedSize;   
+        return this.facets && this.key && this.facets[this.key] && this.currentSize < this.facets[this.key].length && this.currentSize <= this.limitedSize;   
     }
 
     public hasLess(): boolean {
-        return this.currentSize > this.limitedSize;   
+        return this.facets && this.key && this.facets[this.key] && this.currentSize > this.limitedSize;   
     }
     
     public changeLimit(): void {
