@@ -1,0 +1,29 @@
+<div class="result-box">
+	<div #scrollList class="scroll" (scroll)="onScroll($event)" *ngIf="events && events.length > 0">
+		<ul>
+			<li>
+				<filter-box></filter-box>			
+			</li>
+			<li class="loader-box">
+				<ui-loader #loaderEvents text="Loading Events..." size="x-large"></ui-loader>
+			</li>
+<!-- 			<li> -->
+<!-- 				<event *ngIf="!loaderEvents.visible" [myPosition]="myPosition" [(event)]="events[0]"></event> -->
+<!-- 			</li> -->
+			<li *ngFor="let event of events; let i = index">
+				<box-event *ngIf="!loaderEvents.visible" [(event)]="events[i]"></box-event>
+			</li>
+			<li class="footer-box" *ngIf="!loaderEvents.visible">
+				<div>
+					<ui-loader #loaderScroll text="Loading more events..."></ui-loader>
+				</div>
+				<div class="text-right">
+					Loaded <code>{{events.length}}</code> events on <code>{{count}}</code>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div *ngIf="!events || events.length == 0" class="result-empty">
+		<h1>No Events Found :(</h1>
+	</div>
+</div>

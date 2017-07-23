@@ -72,6 +72,6 @@ task undevMode(dependsOn:[':event-docker:dockerDown']) {
 	doLast {}
 }
 
-task devMode(dependsOn:['udevMode', 'devDocker', 'devWeb', 'devCore']) {
+task devMode(dependsOn:[ 'devDocker', 'devWeb', 'devCore']) {
 	doLast {}
 }

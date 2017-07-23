@@ -152,6 +152,12 @@
 	<!-- EXTRA -->
 	<field name="spiderName" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
 	<field name="spiderSource" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="status" type="boolean" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="userOwner" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="userImage" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+
+	<field name="creationDate" type="date" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="modificationDate" type="date" indexed="true" stored="true" required="false" multiValued="false"/>
 
     <!-- Dynamic field definitions allow using convention over configuration
        for fields via the specification of patterns to match field names. 

@@ -5,7 +5,7 @@
 			<span>When</span>
 		</span>
 		<ul class="filter-items">
-			<li *ngFor="let facet of facets">
+			<li *ngFor="let facet of facets" (click)="onClick(facet)" [ngClass]="{'active': isSelected(facet)}">
 				<span>{{facet.name}}</span>
 				<span class="facet-count">{{facet.count}}</span>
 			</li>

@@ -19,7 +19,6 @@ import { AppComponent } from './component/app.component';
 import { NavComponent } from './component/nav.component';
 import { FacetComponent } from './component/facet.component';
 import { FacetBoxComponent } from './component/facet-box.component';
-import { ResultComponent } from './component/result.component';
 import { EventComponent } from './component/event.component';
 import { EventEditComponent } from './component/event-edit.component';
 import { MediaComponent } from './component/media.component';
@@ -35,6 +34,9 @@ import { LoaderComponent } from './ui/loader.component';
 
 import { LoginModal } from './modal/login.modal';
 import { FilterBoxComponent } from './filter-box/filter-box.component';
+import { ResultBoxComponent } from './result-box/result-box.component';
+import { UiLoaderComponent } from './ui-loader/ui-loader.component';
+import { BoxEventComponent } from './box-event/box-event.component';
 
 
 const appRoutes: Routes = [
@@ -50,7 +52,6 @@ const appRoutes: Routes = [
         NavComponent,
         FacetComponent,
         FacetBoxComponent,
-        ResultComponent,
         EventComponent,
         EventEditComponent,
         MapComponent,
@@ -61,7 +62,10 @@ const appRoutes: Routes = [
         LoaderComponent,
         SearchPage,
         CityPage,
-        FilterBoxComponent
+        FilterBoxComponent,
+        ResultBoxComponent,
+        UiLoaderComponent,
+        BoxEventComponent
     ],
     imports: [
         BrowserModule,

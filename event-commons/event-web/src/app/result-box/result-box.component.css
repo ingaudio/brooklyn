@@ -1,0 +1,49 @@
+.result-box {
+	height: 100%;
+	margin-top: 5px;
+}
+
+.result-box .scroll {
+	height: 100%;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.result-box ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.result-box li {
+	
+}
+
+.result-box li.loader-box {
+	background-color: white;
+	padding: 5px;
+	text-align: center;
+}
+
+.result-box li.footer-box  {
+	font-size: small;
+	background-color: white;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.result-box li.footer-box div {
+	display: inline-block;
+}
+
+.result-box li.footer-box div:NTH-CHILD(2) {
+	float: right;
+}
+
+.result-box .result-empty {
+	background-color: white;
+	text-transform: capitalize;
+	text-align: center;
+	padding: 10px;
+}
+
