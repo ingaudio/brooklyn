@@ -25,3 +25,15 @@ ng serve
 
 ## Open Browser
 http://localhost:4200
+
+## QUICK
+# Start Dev Mode
+gradle devMode
+
+# Stop Dev Mode (stop docker)
+gradle undevMode
+
+# Clean Docker Data (like solr index + configuration)
+gradle dockerClean
+
+
