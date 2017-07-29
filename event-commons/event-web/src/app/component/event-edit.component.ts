@@ -12,6 +12,9 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
+import {UiLoaderComponent} from '../ui-loader/ui-loader.component';
+import {EventService} from '../provider/event.service';
+
 
 @Component({
   selector: 'event-edit',
@@ -21,6 +24,7 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 export class EventEditComponent {
         
     @ViewChild("loaderPlace") loaderPlace: LoaderComponent;
+    @ViewChild("loaderSave") loaderSave: UiLoaderComponent;
     
     @Input() myPosition: any;
     
@@ -37,12 +41,15 @@ export class EventEditComponent {
     
     isAddressError = false;
     
-    constructor(private sanitizer: DomSanitizer, private tabConfig: NgbTabsetConfig, private termService: TermService, private changeDetectorRef: ChangeDetectorRef) {
+    isSaveError = false;
+    isSaveComplete = false
+    
+    constructor(private sanitizer: DomSanitizer, private tabConfig: NgbTabsetConfig, private termService: TermService, private changeDetectorRef: ChangeDetectorRef, public eventService: EventService) {
         tabConfig.justify = 'end';
     }
     
     ngOnInit() {
-        this.originalEvent = this.event;
+        this.originalEvent = JSON.parse(JSON.stringify(this.event));
         if(this.event && this.event.youtube) {
             this.youtubeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.event.youtube);
         }
@@ -174,6 +181,30 @@ export class EventEditComponent {
         this.geoMapMode = false
         this.geoAddressMode = true;
         this.isAddressError = (isError ? isError : false);
+    }
+    
+    public clickSave():void {
+       this.loaderSave.visible = true;
+       this.isSaveError = false;
+       this.isSaveComplete = false
+    
+       this.eventService.saveEvent(this.event).subscribe(
+        data => {
+             this.loaderSave.visible = false;
+            this.isSaveComplete = true;   
+        },
+        error => {
+             this.loaderSave.visible = false;
+            this.isSaveError = true;   
+        }
+       );
+    }
+    
+    public clickCancel():void {
+       this.loaderSave.visible = false;
+       this.isSaveError = false;
+       this.isSaveComplete = false
+       this.event = JSON.parse(JSON.stringify(this.originalEvent)); 
     }
     
 }

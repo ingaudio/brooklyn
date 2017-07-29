@@ -71,12 +71,6 @@ public class EventDAO {
 	@Indexed(name=ISolrEvent.status)
 	private Boolean status;
 	
-	@Indexed(name=ISolrEvent.rankPositive)
-	private Long rankPositive = new Long(0);
-	
-	@Indexed(name=ISolrEvent.rankNegative)
-	private Long rankNegative = new Long(0);
-	
 	@Indexed(name=ISolrEvent.creationDate)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
 	private Date creationDate;
@@ -255,22 +249,6 @@ public class EventDAO {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
-	}
-
-	public Long getRankPositive() {
-		return rankPositive;
-	}
-
-	public void setRankPositive(Long rankPositive) {
-		this.rankPositive = rankPositive;
-	}
-
-	public Long getRankNegative() {
-		return rankNegative;
-	}
-
-	public void setRankNegative(Long rankNegative) {
-		this.rankNegative = rankNegative;
 	}
 
 	public Date getCreationDate() {

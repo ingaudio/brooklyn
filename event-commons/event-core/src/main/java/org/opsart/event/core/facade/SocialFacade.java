@@ -78,7 +78,7 @@ public class SocialFacade {
 			if(dao.vote < 0) rankNegative += dao.vote;
 			
 			//Update Event
-			this.eventService.updateEventRank(eventId, rankPositive, rankNegative);
+//			this.eventService.updateEventRank(eventId, rankPositive, rankNegative);
 			
 			//Update Social
 			return dao;

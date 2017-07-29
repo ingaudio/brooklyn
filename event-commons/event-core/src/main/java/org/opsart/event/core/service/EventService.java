@@ -74,12 +74,12 @@ public class EventService {
 		this.repo.save(event);
 	}
 	
-	public void updateEventRank(String eventId, long rankPositive, long rankNegative) {
-		EventDAO event = this.repo.getEvent(eventId);
-		event.setRankPositive(event.getRankPositive()+rankPositive);
-		event.setRankNegative(event.getRankNegative()+rankNegative);
-		this.repo.save(event);	
-	}
+//	public void updateEventRank(String eventId, long rankPositive, long rankNegative) {
+//		EventDAO event = this.repo.getEvent(eventId);
+//		event.setRankPositive(event.getRankPositive()+rankPositive);
+//		event.setRankNegative(event.getRankNegative()+rankNegative);
+//		this.repo.save(event);	
+//	}
 	
 	
 }

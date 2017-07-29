@@ -16,6 +16,8 @@ export class BoxEventComponent implements OnInit {
     
     public youtubeURL: any;
     
+    public editMode = false;
+    
     constructor(private sanitizer: DomSanitizer) { }
 
     ngOnInit() {

@@ -49,10 +49,10 @@ public interface ISolrEvent {
 	
 	public static final String status = "status";
 	
-	public static final String rankPositive = "rankPositive";
-	
-	public static final String rankNegative = "rankNegative";
-	
+//	public static final String rankPositive = "rankPositive";
+//	
+//	public static final String rankNegative = "rankNegative";
+//	
 	public static final String creationDate = "creationDate";
 	
 	public static final String modificationDate = "modificationDate";
