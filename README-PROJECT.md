@@ -1,5 +1,7 @@
-#Proeject GIT
+#Project Flow
 
-1) Create Issue (and work on it)
+##Create Issue
 
-2) GIT Branching
+
+##Git Branching
+
