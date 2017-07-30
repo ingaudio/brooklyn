@@ -31,18 +31,18 @@ task virtualEnv() {
 	}
 }
 
-//task spiderBcn() {
-//	dependsOn virtualEnv
-//	doLast {
-//		project.exec { ExecSpec e ->
-//			e.workingDir="src/python"
+task spiderBcn() {
+	dependsOn virtualEnv
+	doLast {
+		project.exec { ExecSpec e ->
+			e.workingDir="src/python"
 //			e.environment PATH:file('build/venv/bin/').absolutePath 
-//			//PYTHONHOME:file('build/venv/bin/').absolutePath
-//			e.commandLine='python'
-//			e.args = ['crawlerBarcelona.py']
-//		}
-//	}
-//}
+			//PYTHONHOME:file('build/venv/bin/').absolutePath
+			e.commandLine='python'
+			e.args = ['crawlerBarcelona.py']
+		}
+	}
+}
 
 
 
