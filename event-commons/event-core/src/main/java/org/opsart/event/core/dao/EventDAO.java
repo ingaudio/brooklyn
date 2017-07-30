@@ -40,11 +40,11 @@ public class EventDAO {
 	private String youtube;
 	
 	@Indexed(name=ISolrEvent.dateStart)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 	private Date dateStart;
 	
 	@Indexed(name=ISolrEvent.dateEnd)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 	private Date dateEnd;
 	
 	@Indexed(name=ISolrEvent.country)
