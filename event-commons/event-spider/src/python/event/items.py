@@ -111,3 +111,17 @@ class EventItem(scrapy.Item):
         output_processor=TakeFirst()
     )
 
+    creationDate = scrapy.Field(
+        input_processor=MapCompose(decodeText, beautifyText),
+        output_processor=Join(' ')
+    )
+    
+    modificationDate = scrapy.Field(
+        input_processor=MapCompose(decodeText, beautifyText),
+        output_processor=Join(' ')
+    )
+    
+    status = scrapy.Field(
+        input_processor=MapCompose(decodeText, beautifyText),
+        output_processor=TakeFirst()
+    )

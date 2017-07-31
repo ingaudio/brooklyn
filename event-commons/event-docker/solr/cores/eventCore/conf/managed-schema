@@ -140,11 +140,11 @@
 	<field name="dateEnd" type="date" indexed="true" stored="true" required="false" multiValued="false"/>
 
 	<!-- WHERE -->
-	<field name="country" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-	<field name="city" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-	<field name="locality" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="country" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="city" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="locality" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
 	<field name="address" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-	<field name="coordinate" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="coordinate" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
 
 	<field name="place" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
 	<field name="zone" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
@@ -152,11 +152,11 @@
 	<!-- EXTRA -->
 	<field name="spiderName" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
 	<field name="spiderSource" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
-	<field name="status" type="boolean" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="status" type="boolean" indexed="true" stored="true" required="true" multiValued="false"/>
 	<field name="userOwner" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
 	<field name="userImage" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
 
-	<field name="creationDate" type="date" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="creationDate" type="date" indexed="true" stored="true" required="true" multiValued="false"/>
 	<field name="modificationDate" type="date" indexed="true" stored="true" required="false" multiValued="false"/>
 
     <!-- Dynamic field definitions allow using convention over configuration

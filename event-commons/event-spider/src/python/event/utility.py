@@ -4,6 +4,7 @@ import unidecode
 import logging
 import datetime
 import re
+import time
 
 # ENCODING STUFF
 
@@ -16,12 +17,20 @@ def encodeText(value):
     return unidecode.unidecode(value)
 
 def encodeDate(value):
-    if value == None: return None
-    for format in ['%A %d %B %Y %H:%M', '%A %d %B %Y', '%d/%m/%Y']:
+    if value == '': return ''
+    #for format in ['%A %d %B %Y %H:%M', '%A %d %B %Y', '%d/%m/%Y', '%Y-%m-%d%t%H:%M:%S', '%y-%m-%d %H:%M:%S.%f']:
+    for format in ['%Y-%m-%d %H:%M:%S', '%A %d %B %Y %H:%M', '%A %d %B %Y', '%d/%m/%Y']:
         try: return datetime.datetime.strptime(value, format)
-        except: pass
+        except Exception as e: 
+            logging.debug("fail to decode date [%s] with format [%s] and exception: %s" % (value,format,e))
+            pass
+    
+    
     logging.warn("fail to decode date: [%s]" % value)
     return None
+
+def encodeDateNow():
+    return time.strftime("%Y-%m-%d %H:%M:%S")
 
 # Selector
 
