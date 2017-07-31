@@ -6,6 +6,38 @@ ext {
 }
 apply plugin: 'eclipse'
 
+task cleanRaw() {
+	doLast {
+		delete "${projectDir}/data/raw"
+	}
+}
+
+task cleanStage() {
+	doLast {
+		delete "${projectDir}/data/stage"
+	}
+}
+
+task cleanLive() {
+	doLast {
+		delete "${projectDir}/data/live"
+	}
+}
+
+task clean() {
+	doLast {
+		delete "${projectDir}/data"
+		delete "${projectDir}/log"
+	}
+}
+
+task cleanAll(dependsOn: ['clean']) {
+	doLast {
+		delete "${projectDir}/build"
+	}
+}
+
+
 task createVirtualEnv() {
 	doLast {
 		if(!file("$buildDir/$virtualEnv/bin/python").exists()) {
@@ -19,31 +51,59 @@ task createVirtualEnv() {
 	}
 }
 
-task virtualEnv() {
-	dependsOn createVirtualEnv
+task virtualEnv(dependsOn: [ 'createVirtualEnv']) {
 	doLast {
 		project.exec { ExecSpec e ->
 			e.workingDir="build/venv/bin"
-//			e.environment PATH:file('build/venv/bin/').absolutePath
 			e.commandLine='./pip'
 			e.args = ['install', 'scrapy', 'pysolr', 'googlemaps', 'unidecode']
 		}
 	}
 }
 
-task spiderBcn() {
-	dependsOn virtualEnv
-	doLast {
+task spiderBcn(dependsOn: [ 'virtualEnv']) {
+	doLast {		
 		project.exec { ExecSpec e ->
 			e.workingDir="src/python"
-//			e.environment PATH:file('build/venv/bin/').absolutePath 
-			//PYTHONHOME:file('build/venv/bin/').absolutePath
+			e.environment PATH:file('build/venv/bin/').absolutePath 
 			e.commandLine='python'
-			e.args = ['crawlerBarcelona.py']
+			e.args = ['crawler/spiderBcn.py']
 		}
 	}
 }
 
+task crawlerRaw(dependsOn: [ 'virtualEnv']) {
+	doLast {
+		project.exec { ExecSpec e ->
+			e.workingDir="src/python"
+			e.environment PATH:file('build/venv/bin/').absolutePath
+			e.commandLine='python'
+			e.args = ['crawler/crawlerRaw.py']
+		}
+	}
+}
+
+task crawlerSync(dependsOn: [ 'virtualEnv']) {
+	doLast {
+		project.exec { ExecSpec e ->
+			e.workingDir="src/python"
+			e.environment PATH:file('build/venv/bin/').absolutePath
+			e.commandLine='python'
+			e.args = ['crawler/crawlerSync.py']
+		}
+	}
+}
+
+task crawlerGeo(dependsOn: [ 'virtualEnv']) {
+	doLast {
+		project.exec { ExecSpec e ->
+			e.workingDir="src/python"
+			e.environment PATH:file('build/venv/bin/').absolutePath
+			e.commandLine='python'
+			e.args = ['crawler/crawlerGeo.py']
+		}
+	}
+}
 
 
 

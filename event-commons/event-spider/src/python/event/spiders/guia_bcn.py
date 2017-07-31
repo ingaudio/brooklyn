@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import logging
+import time
 
 from scrapy.http import HtmlResponse
 from scrapy.loader import ItemLoader
@@ -23,6 +24,14 @@ class GuiaBcnSpider(scrapy.Spider):
     allowed_domains = ['guia.barcelona.cat']
     
     start_urls = ['http://guia.barcelona.cat/en']
+
+    custom_settings = {
+        'FEED_URI': "../../data/raw/" + time.strftime("%Y%m%d-%H%M%S") + "-spider-" + name + ".xml",
+        'FEED_FORMAT': 'xml',
+        'ITEM_PIPELINES': {
+            'event.pipelines.EventCreate':1
+        }
+    }
 
     def start_requests(self):
         yield scrapy.Request(

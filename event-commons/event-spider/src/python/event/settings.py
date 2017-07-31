@@ -68,11 +68,11 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'event.pipelines.EventEnrichment': 100,
-    'event.pipelines.EventCollision': 200,
-    'event.pipelines.EventGeocode': 200,
+#    'event.pipelines.EventEnrichment': 100,
+#    'event.pipelines.EventCollision': 200,
+#    'event.pipelines.EventGeocode': 200,
 #    'event.pipelines.EventValidator': 800,
-    'event.pipelines.EventSolrWriter': 900
+#    'event.pipelines.EventSolrWriter': 900
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

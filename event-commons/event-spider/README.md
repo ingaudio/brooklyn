@@ -1,5 +1,11 @@
 # PYTHON Stuff!!
 
+# Super Command For SPIDER -> SOLR
+gradle clean spiderBcn crawlerRaw crawlerSync
+
+# Super Commnad for SOLR -> SOLR (geo update of events) 
+gradle clean spiderBcn crawlerGeo crawlerSync
+
 # Prepare Python Env
 gradle virtualEnv
 

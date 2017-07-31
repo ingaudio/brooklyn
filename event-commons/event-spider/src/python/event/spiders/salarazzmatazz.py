@@ -2,9 +2,12 @@
 import scrapy
 import re
 import datetime
+import time
+import unidecode
+
 from scrapy.loader import ItemLoader
 from event.items import EventItem
-import unidecode
+
 from ..utility import *
 
 class SalarazzmatazzSpider(scrapy.Spider):
@@ -14,6 +17,14 @@ class SalarazzmatazzSpider(scrapy.Spider):
     allowed_domains = ['www.salarazzmatazz.com']
 
     start_urls = ['http://www.salarazzmatazz.com']
+
+    custom_settings = {
+        'FEED_URI': "../../data/raw/" + time.strftime("%Y%m%d-%H%M%S") + "-spider-" + name + ".xml",
+        'FEED_FORMAT': 'xml',
+        'ITEM_PIPELINES': {
+            'event.pipelines.EventCreate':1
+        }
+    }
 
     def start_requests(self):
             date = datetime.date.today()
