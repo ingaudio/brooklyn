@@ -1,5 +1,35 @@
 # PYTHON Stuff!!
 
+#befoure to run spiders need to install pip and virtualenv
+sudo apt install python-pip
+sudo pip install virtualenv
+
+
+##Run all crawler for bring event in barcellona online
+
+#start solr and mongo
+gradle dockerUp
+
+#run spider Barcellona
+gradle spiderBcn
+
+#Run crowler to Syncronize STAGE with RAW(verify solr collisions - solr must to be up)
+gradle crawlerRaw
+
+#Run crowler to Syncronize ONLINE with STAGE
+gradle crawlerSync
+
+#delete folder stage?????
+#Run crowler to geo-ref first 10 events
+gradle crawlerGeo
+
+#Run crowler to Syncronize ONLINE with STAGE
+gradle crawlerSync
+
+
+
+
+
 # Super Command For SPIDER -> SOLR
 gradle clean spiderBcn crawlerRaw crawlerSync
 
