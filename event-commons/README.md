@@ -7,8 +7,11 @@
 Eclipse: import as "Existing Gradle Project" => event-commons
 
 ## Run Containers (mongo, solr, etc...)
-cd event-docker
+gradle dockerUp
 
+or
+
+cd event-docker
 docker-compose up -d
 
 ## Run Core
@@ -26,7 +29,7 @@ ng serve
 ## Open Browser
 http://localhost:4200
 
-## QUICK
+## QUICK (only if parallel execution is enabled)
 # Start Dev Mode
 gradle devMode
 
@@ -35,5 +38,31 @@ gradle undevMode
 
 # Clean Docker Data (like solr index + configuration)
 gradle dockerClean
+
+
+
+
+
+####   Start Dev Enviroments 
+
+## Run Dev Containers (mongo, solr)
+gradle devDocker
+
+## Run Dev Core
+gradle devCore
+
+## Run Angular
+gradle devWeb
+
+
+####    Stop Dev Enviroment
+
+# Close Terminal Windows
+premi CTRL+C in all opened terminal windows(containers,core,angular)
+
+# Stop Docker 
+gradle dockerDown
+
+
 
 
