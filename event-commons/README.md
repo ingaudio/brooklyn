@@ -1,10 +1,27 @@
-
-
 # README
 
-## Eclipse Integration
+This readme file will help you :)
 
-Eclipse: import as "Existing Gradle Project" => event-commons
+# Eclipse
+How to work in eclipse...
+
+## Cleanup old files
+~~~~gradle cleanEclipse~~~~
+
+## Create eclipse files
+~~~~gradle eclipse~~~~
+
+## Import in workspace
+use the eclipse functionality: import as "Existing Gradle Project" => event-commons
+
+# Project Lifecycle
+
+## Clean
+Clean all projects artifacts
+~~~~gradle clean~~~~
+
+
+
 
 ## Run Containers (mongo, solr, etc...)
 cd event-docker
