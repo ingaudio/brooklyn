@@ -25,7 +25,7 @@ task cleanAll(dependsOn: ['clean']) {
 
 
 task build(type: NpmTask, dependsOn: [ 'clean', 'npm_install']) {
-	args = ['run', "build-$profile"]
+	args = ['run', "build-$env"]
 }
 
 task serve(type: NpmTask, dependsOn: [ 'npm_install']) {

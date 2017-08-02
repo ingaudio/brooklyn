@@ -2,14 +2,7 @@
 version='0.0.1'
 
 ext {
-	profile = "local"
-}
-
-//Profiles
-task dev() {
-	doLast {
-		profile = "dev"
-	}
+	env = (project.hasProperty('env') ? "${env}" : "dev")
 }
 
 //Welcome
@@ -21,41 +14,44 @@ allprojects {
 	}
 }
 
-welcome.mustRunAfter dev
-
-//Clean
+// COMMONS
 task clean(dependsOn: []) {
 	doLast { 
 		delete "${projectDir}/dist"
-		println("$project.name [$project.version][$profile] clean")
 	}
 }
 
 task cleanAll(dependsOn: ['clean']) {
 }
 
-//Dist
-task dist(dependsOn: [ 'clean', 'distWeb', 'distCore' ]) {
-	doLast { 
-		println("$project.name [$project.version][$profile] dist")
-	}
+//task dist(dependsOn: [ 'clean', 'distWeb', 'distCore' ]) {
+//	doLast { 
+//		println("$project.name [$project.version][$profile] dist")
+//	}
+//}
+//
+//dist.mustRunAfter dev
+
+//task distWeb(type: Zip, dependsOn: [':event-web:build'] ) {
+//	from 'event-web/dist'
+//	destinationDir file("dist/release-$project.version-$profile/")
+//	baseName = 'enjoy-web'
+//}
+//
+//task distCore(type: Copy, dependsOn:[':event-core:build']) {
+//	from 'event-core/build/libs'
+//	into "dist/release-$project.version-$profile/"
+//	include '*.war'
+//}
+
+task distSpider(type: Zip, dependsOn: [] ) {
+	from 'event-spider/data'
+	destinationDir file("dist/")
+	baseName = "enjoy-spider-${env}-${project.version}"
 }
 
-dist.mustRunAfter dev
+//Development Mode
 
-task distWeb(type: Zip, dependsOn: [':event-web:build'] ) {
-	from 'event-web/dist'
-	destinationDir file("dist/release-$project.version-$profile/")
-	baseName = 'enjoy-web'
-}
-
-task distCore(type: Copy, dependsOn:[':event-core:build']) {
-	from 'event-core/build/libs'
-	into "dist/release-$project.version-$profile/"
-	include '*.war'
-}
-
-//Development
 task devWeb(dependsOn:[':event-web:serve']) {
 	doLast {}
 }
@@ -68,10 +64,6 @@ task devDocker(dependsOn:[':event-docker:dockerUp']) {
 	doLast {}
 }
 
-task undevMode(dependsOn:[':event-docker:dockerDown']) {
-	doLast {}
-}
 
-task devMode(dependsOn:[ 'devDocker', 'devWeb', 'devCore']) {
-	doLast {}
-}
+
+

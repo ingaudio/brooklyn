@@ -1,11 +1,13 @@
 plugins { id 'org.springframework.boot' version '1.5.3.RELEASE' }
 
-//version='0.0.1'
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
+
+ext {
+	env = (project.hasProperty('env') ? "${env}" : "dev")
+}
 
 war { 
 	baseName = 'enjoy-core'
@@ -39,8 +41,8 @@ dependencies {
 
 task updateProfile() {
 	doLast { 
-		println("spring profile updated to $profile")
-		System.setProperty("spring.profiles.active", "$profile")
+		println("Using profile: ${env}")
+		System.setProperty("spring.profiles.active", "${env}")
 	}
 }
 
@@ -58,4 +60,7 @@ clean.dependsOn('cleanPublic')
 compileJava.dependsOn('updateProfile')
 
 war.dependsOn('copyPublic')
+
+
+
 
