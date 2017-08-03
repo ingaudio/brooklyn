@@ -7,13 +7,14 @@
 import pysolr
 import googlemaps
 import hashlib
+import os
 from utility import *
 from scrapy.exceptions import DropItem
 from event.items import EventItem
 import logging
 
-SOLR_ENDPOINT = "http://192.168.99.100:8983/solr/eventCore"
-GOOGLE_KEY = "AIzaSyDG0Y0aWyZdR9_-xjJ0fOShkhma_ePy8LE"
+SOLR_ENDPOINT = os.environ['SOLR_ENDPOINT']
+GOOGLE_KEY = os.environ['GOOGLE_KEY']
 
 class EventCreate(object):
     def process_item(self, item, spider):

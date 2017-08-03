@@ -17,8 +17,8 @@ if not os.path.exists(os.path.dirname("../../data/log/")):
 
 #Prepare Files
 time_prefix = time.strftime("%Y%m%d-%H%M%S")
-file_data = "../../data/stage/" + time_prefix + "-crawlerGeo.xml"
-file_log = "../../data/log/" + time_prefix + "-crawlerGeo.log"
+file_data = "../../data/stage/" + time_prefix + "-crawlerStage.xml"
+file_log = "../../data/log/" + time_prefix + "-crawlerStage.log"
 
 #Create Files
 if not os.path.exists(os.path.dirname(file_data)):
@@ -33,13 +33,10 @@ setting['FEED_URI'] = file_data
 setting['LOG_LEVEL'] = 'DEBUG'
 #setting['LOG_FILE'] = file_log
 setting['ITEM_PIPELINES'] = {
-    'event.pipelines.EventUpdate':1,
-    'event.pipelines.EventGeocodeSolr':5,
-    'event.pipelines.EventGeocodeGoogle':10
 }
 
 # Solr Query
-solr_query= os.environ['SOLR_ENDPOINT'] + "/select?q=*%3A*&fq=place%3A%5B*+TO+*%5D&fq=-coordinate%3A%5B*+TO+*%5D&wt=xml&rows=100" 
+solr_query= os.environ['SOLR_ENDPOINT'] + "/select?q=*%3A*&rows=500&wt=xml" 
 
 #Crawler
 process = CrawlerProcess(setting)

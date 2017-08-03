@@ -1,111 +1,155 @@
-
-version="0.1.0"
-
-ext {
-	virtualEnv = "venv"
-}
 apply plugin: 'eclipse'
 
-task cleanRaw() {
-	doLast {
-		delete "${projectDir}/data/raw"
-	}
+ext {
+	env = (project.hasProperty('env') ? "${env}" : "dev")
 }
 
-task cleanStage() {
-	doLast {
-		delete "${projectDir}/data/stage"
-	}
-}
+/* Environment */
+def envScript = file("${projectDir}/gradle/build-${env}.gradle")
+if (!envScript.exists()) {
+	throw new GradleException("Unknown Environment: $env")
+  }
+apply from: envScript
+println "Current Environment: ${env}"
 
-task cleanLive() {
-	doLast {
-		delete "${projectDir}/data/live"
-	}
-}
+/* COMMON TASK */
 
 task clean() {
 	doLast {
+		delete "${projectDir}/build"
 		delete "${projectDir}/data"
-		delete "${projectDir}/log"
 	}
 }
 
 task cleanAll(dependsOn: ['clean']) {
 	doLast {
-		delete "${projectDir}/build"
+		delete "${projectDir}/venv"
 	}
 }
 
-
-task createVirtualEnv() {
+task build() {
 	doLast {
-		if(!file("$buildDir/$virtualEnv/bin/python").exists()) {
-			file("$buildDir").mkdirs()
+		println "NOT IMPLEMENTED!!!"
+	}
+}
+
+task dist() {
+	doLast {
+		println "NOT IMPLEMENTED!!!"
+	}
+}
+
+task deploy() {
+	doLast {
+		println "NOT IMPLEMENTED!!!"
+	}
+}
+
+/* Specific Tasks */
+
+task spiderSetupEnvironment() {
+	doLast {
+		//Create Environment If Needed
+		if(!file("${projectDir}/venv/${env}").exists()) {
+			//Prepare folder
+			file("${projectDir}/venv").mkdirs()
+			
+			//Create Virtual Env
 			project.exec { ExecSpec e ->
-				e.workingDir=buildDir
+				e.workingDir=file("${projectDir}/venv").absolutePath
 				e.commandLine='virtualenv'
-				e.args = [virtualEnv]
+				e.args = [ "${env}" ]
 			}
+			
+			//Update Environment
+			project.exec { ExecSpec e ->
+				e.workingDir=file("${projectDir}/venv/${env}/bin").absolutePath
+				e.commandLine='./pip'
+				e.args = ['install', 'scrapy', 'pysolr', 'googlemaps', 'unidecode']
+			}
+	
 		}
+
 	}
 }
 
-task virtualEnv(dependsOn: [ 'createVirtualEnv']) {
+task spiderCleanRaw() {
 	doLast {
-		project.exec { ExecSpec e ->
-			e.workingDir="build/venv/bin"
-			e.commandLine='./pip'
-			e.args = ['install', 'scrapy', 'pysolr', 'googlemaps', 'unidecode']
-		}
+		delete "${projectDir}/data/raw"
 	}
 }
 
-task spiderBcn(dependsOn: [ 'virtualEnv']) {
+task spiderCleanStage() {
+	doLast {
+		delete "${projectDir}/data/stage"
+	}
+}
+
+task spiderCleanLog() {
+	doLast {
+		delete "${projectDir}/data/live"
+	}
+}
+
+task spiderBcn(dependsOn: [ 'spiderSetupEnvironment']) {
 	doLast {		
 		project.exec { ExecSpec e ->
-			e.workingDir="src/python"
-			e.environment PATH:file('build/venv/bin/').absolutePath 
-			e.commandLine='python'
-			e.args = ['crawler/spiderBcn.py']
+			e.workingDir="${projectDir}"
+			e.environment SOLR_ENDPOINT:"${solrEndpoint}"
+			e.environment GOOGLE_KEY:"${googleKey}"
+			e.commandLine='sh'
+			e.args = ['run.sh', "${env}", "crawler/spiderBcn.py"]
 		}
 	}
 }
 
-task crawlerRaw(dependsOn: [ 'virtualEnv']) {
+task crawlerRaw(dependsOn: [ 'spiderSetupEnvironment']) {
 	doLast {
 		project.exec { ExecSpec e ->
-			e.workingDir="src/python"
-			e.environment PATH:file('build/venv/bin/').absolutePath
-			e.commandLine='python'
-			e.args = ['crawler/crawlerRaw.py']
+			e.workingDir="${projectDir}"
+			e.environment SOLR_ENDPOINT:"${solrEndpoint}"
+			e.environment GOOGLE_KEY:"${googleKey}"
+			e.commandLine='sh'
+			e.args = ['run.sh', "${env}", "crawler/crawlerRaw.py"]
 		}
 	}
 }
 
-task crawlerSync(dependsOn: [ 'virtualEnv']) {
+task crawlerStage(dependsOn: [ 'spiderSetupEnvironment']) {
 	doLast {
 		project.exec { ExecSpec e ->
-			e.workingDir="src/python"
-			e.environment PATH:file('build/venv/bin/').absolutePath
-			e.commandLine='python'
-			e.args = ['crawler/crawlerSync.py']
+			e.workingDir="${projectDir}"
+			e.environment SOLR_ENDPOINT:"${solrEndpoint}"
+			e.environment GOOGLE_KEY:"${googleKey}"
+			e.commandLine='sh'
+			e.args = ['run.sh', "${env}", "crawler/crawlerStage.py"]
 		}
 	}
 }
 
-task crawlerGeo(dependsOn: [ 'virtualEnv']) {
+
+
+task crawlerSync(dependsOn: [ 'spiderSetupEnvironment']) {
 	doLast {
 		project.exec { ExecSpec e ->
-			e.workingDir="src/python"
-			e.environment PATH:file('build/venv/bin/').absolutePath
-			e.commandLine='python'
-			e.args = ['crawler/crawlerGeo.py']
+			e.workingDir="${projectDir}"
+			e.environment SOLR_ENDPOINT:"${solrEndpoint}"
+			e.environment GOOGLE_KEY:"${googleKey}"
+			e.commandLine='sh'
+			e.args = ['run.sh', "${env}", "crawler/crawlerSync.py"]
 		}
 	}
 }
 
-
-
-
+task crawlerGeo(dependsOn: [ 'spiderSetupEnvironment']) {
+	doLast {
+		project.exec { ExecSpec e ->
+			e.workingDir="${projectDir}"
+			e.environment SOLR_ENDPOINT:"${solrEndpoint}"
+			e.environment GOOGLE_KEY:"${googleKey}"
+			e.commandLine='sh'
+			e.args = ['run.sh', "${env}", "crawler/crawlerGeo.py"]
+		}
+	}
+}
 

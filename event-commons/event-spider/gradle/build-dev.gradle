@@ -1,0 +1,5 @@
+ext {
+	solrEndpoint="http://dev-solr:8983/solr/eventCore"
+	googleKey="AIzaSyDG0Y0aWyZdR9_-xjJ0fOShkhma_ePy8LE"
+}
+
