@@ -24,13 +24,6 @@ task clean(dependsOn: []) {
 task cleanAll(dependsOn: ['clean']) {
 }
 
-//task dist(dependsOn: [ 'clean', 'distWeb', 'distCore' ]) {
-//	doLast { 
-//		println("$project.name [$project.version][$profile] dist")
-//	}
-//}
-//
-//dist.mustRunAfter dev
 
 //task distWeb(type: Zip, dependsOn: [':event-web:build'] ) {
 //	from 'event-web/dist'
@@ -44,10 +37,20 @@ task cleanAll(dependsOn: ['clean']) {
 //	include '*.war'
 //}
 
-task distSpider(type: Zip, dependsOn: [] ) {
-	from 'event-spider/data'
-	destinationDir file("dist/")
-	baseName = "enjoy-spider-${env}-${project.version}"
+task distSpider(type: Copy, dependsOn: [] ) {
+	from '${projectDir}/event-spider/data/live'
+	into "${projectDir}/../backup/${env}/spider"
+	include '*.xml'
+}
+
+task copySpider(type: Copy, dependsOn:[]) {
+	from '${projectDir}/../backup/${env}/spider'
+	into '${projectDir}/event-spider/data/live'
+	include '*.xml'
+}
+
+task deploySpider(dependsOn:['copySpider']) {
+	doLast {}
 }
 
 //Development Mode
@@ -63,7 +66,4 @@ task devCore(dependsOn:[':event-core:bootRun']) {
 task devDocker(dependsOn:[':event-docker:dockerUp']) {
 	doLast {}
 }
-
-
-
 

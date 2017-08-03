@@ -1,18 +1,46 @@
 # README
-
 This readme file will help you :)
 
-# Eclipse
+# ECLIPSE
 How to work in eclipse...
 
 ## Cleanup old files
-~~~~gradle cleanEclipse~~~~
+gradle cleanEclipse
 
 ## Create eclipse files
-~~~~gradle eclipse~~~~
+gradle eclipse
 
 ## Import in workspace
 use the eclipse functionality: import as "Existing Gradle Project" => event-commons
+
+# DEV Lifecycle
+
+## Update /etc/hosts
+192.168.99.100 dev-solr
+192.168.99.100 dev-mongo
+192.168.99.100 dev-apache
+192.168.99.100 dev-tomcat
+
+## Clean
+Clean all project artifact
+gradle clean
+
+## Clean All
+Delete also data (docker container, npm, virtual-env, etc..)
+gradle cleanAll
+
+## Clean Docker
+Clean Docker Data (like solr index + configuration)
+gradle dockerClean
+
+## Start Docker
+gradle devDocker
+
+## Start Core (java)
+gradle devCore
+
+## Start Web (angular)
+gradle devWeb
 
 # GIT workflow
 
@@ -65,44 +93,4 @@ git push
 
 - Delete branch locally (NOT REMOTE!!!)
 git branch -d <feature_branch>
-
-# Project Lifecycle
-
-## Clean
-Clean all projects artifacts
-~~~~gradle clean~~~~
-
-
-
-
-## Run Containers (mongo, solr, etc...)
-cd event-docker
-
-docker-compose up -d
-
-## Run Core
-
-cd event-core
-
-gradle bootRun
-
-## Run Angular
-
-cd event-web
-
-ng serve
-
-## Open Browser
-http://localhost:4200
-
-## QUICK
-# Start Dev Mode
-gradle devMode
-
-# Stop Dev Mode (stop docker)
-gradle undevMode
-
-# Clean Docker Data (like solr index + configuration)
-gradle dockerClean
-
 
