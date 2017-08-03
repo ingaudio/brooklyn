@@ -26,7 +26,7 @@ public class EventRestController {
 	@Autowired
 	private EventService searchService;
 	
-	@CrossOrigin(origins={ "${cors.origin}" }, maxAge=CorsOption.maxAge, allowCredentials=CorsOption.allowCredentials)
+	@CrossOrigin(origins={ CorsOption.origins }, maxAge=CorsOption.maxAge, allowCredentials=CorsOption.allowCredentials)
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<ResultDTO> doSearch(@RequestBody QueryDTO query) {
 		//SEARCH
